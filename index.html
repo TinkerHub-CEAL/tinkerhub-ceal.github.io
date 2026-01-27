@@ -12,11 +12,11 @@
 		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@1,500;1,700&display=swap"
 		rel="stylesheet">
 	<!-- Styles -->
-	<link rel="stylesheet" href="./static/style.css">
+	<link rel="stylesheet" href="./static/styles/style.css">
 	<!-- Ionicons -->
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
-	<script src="./static/script.js" defer></script>
+	<script src="./static/scripts/script.js" defer></script>
 </head>
 
 <body>
@@ -27,10 +27,16 @@
 			<div class="brand">
 				TinkerHub<br>CEAL
 			</div>
-			<div class="nav-links">
+			<button class="hamburger" id="hamburger" aria-label="Toggle menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<div class="nav-links" id="navLinks">
 				<a href="index.html">Home</a>
 				<a href="#events">Events</a>
-				<a href="highlight.html">Highlight</a>
+				<a href="#highlights">Highlight</a>
+				<a href="team.html">Our Team</a>
 				<a href="about.html">About</a>
 			</div>
 		</div>
@@ -67,10 +73,8 @@
 			<div class="about-graphics">
 				<div class="sticker green">EVENTS</div>
 				<div class="video-container">
-					<!-- For local video files, use the <video> tag below -->
-					<video controls poster="path/to/thumbnail.jpg">
-						<source src="path/to/your-video.mp4" type="video/mp4">
-						<source src="path/to/your-video.webm" type="video/webm">
+					<video muted autoplay loop>
+						<source src="static/videos/test.mp4" type="video/mp4">
 						Your browser does not support the video tag.
 					</video>
 				</div>
@@ -101,6 +105,28 @@
 		</div>
 	</section>
 
+	<!-- Highlights Carousel Section -->
+	<section id="highlights" class="highlights-section container" style="padding: 4rem 0;">
+		<div class="highlight-header-container">
+			<div class="sticker-stack-green">PAST</div>
+			<div class="sticker-stack-black">HIGHLIGHT</div>
+		</div>
+
+		<div class="highlights-carousel">
+			<button class="carousel-nav-btn carousel-prev" id="highlightPrev" aria-label="Previous highlights">
+				<ion-icon name="chevron-back-outline"></ion-icon>
+			</button>
+
+			<div class="highlights-container" id="highlightsContainer">
+				<!-- Highlights will be injected here by script.js -->
+			</div>
+
+			<button class="carousel-nav-btn carousel-next" id="highlightNext" aria-label="Next highlights">
+				<ion-icon name="chevron-forward-outline"></ion-icon>
+			</button>
+		</div>
+	</section>
+
 	<!-- Footer -->
 	<footer>
 		<div class="ticker-wrap">
@@ -118,7 +144,7 @@
 			<h2>Join the Movement</h2>
 			<div
 				style="display: inline-block; background: #333; color: #FDD835; padding: 0.8rem 2rem; border-radius: 50px; margin-bottom: 3rem; font-weight: 600;">
-				TinkerHub.org
+				<a href="https://www.tinkerhub.org" target="_blank" rel="noopener noreferrer">TinkerHub.org</a>
 			</div>
 
 			<div class="stats-container">
@@ -136,11 +162,20 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="footer-bottom">
-			&copy; <span id="year"></span> TinkerHub CEAl. All Rights Reserved.
-		</div>
 	</footer>
+	<!-- Image Placeholder Section -->
+	<section class="image-placeholder-section">
+		<div class="placeholder-image-container">
+			<img src="./static/images/tump.jpg" alt="Community Image" class="placeholder-image">
+		</div>
+	</section>
+	<div class="footer-bottom">
+		&copy; <span id="year"></span> TinkerHub CEAl. All Rights Reserved.
+	</div>
+
+
+
+
 </body>
 
 </html>
