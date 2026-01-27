@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TinkerHub CEAl</title>
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@1,500;1,700&display=swap"
+		rel="stylesheet">
+	<!-- Styles -->
+	<link rel="stylesheet" href="./static/style.css">
+	<!-- Ionicons -->
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+	<script src="./static/script.js" defer></script>
+</head>
+
+<body>
+
+	<!-- Navbar -->
+	<nav class="navbar">
+		<div class="nav-container">
+			<div class="brand">
+				TinkerHub<br>CEAL
+			</div>
+			<div class="nav-links">
+				<a href="index.html">Home</a>
+				<a href="#events">Events</a>
+				<a href="highlight.html">Highlight</a>
+				<a href="about.html">About</a>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Hero Section -->
+	<section class="hero container">
+		<div class="hero-grid">
+			<div class="hero-text">
+				<div class="sticker">PROJECTS</div>
+				<h1>Learn, Build, Share</h1>
+				<p>Change is inevitable, but progress is a choice. We're here to ensure students choose innovation,
+					growth, and impact.</p>
+				<br>
+				<!-- Decorative sun/star can be an SVG or div -->
+				<div class="star-icon" style="background-color: #FDD835;"></div>
+			</div>
+
+			<!-- Right side Grid -->
+			<div class="hero-gallery">
+				<div class="gallery-card"></div>
+				<div class="gallery-card"></div>
+				<div class="gallery-card"></div>
+				<div class="gallery-card"></div>
+				<div class="gallery-card"></div>
+				<div class="gallery-card"></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- About Section -->
+	<section class="about-section container">
+		<div class="about-content">
+			<div class="about-graphics">
+				<div class="sticker green">EVENTS</div>
+				<div class="video-container">
+					<!-- For local video files, use the <video> tag below -->
+					<video controls poster="path/to/thumbnail.jpg">
+						<source src="path/to/your-video.mp4" type="video/mp4">
+						<source src="path/to/your-video.webm" type="video/webm">
+						Your browser does not support the video tag.
+					</video>
+				</div>
+			</div>
+			<div class="about-text">
+				<h3><span style="font-weight: 800;">TinkerHub CEAL</span> is a student community that strives to bring
+					together students from diverse branches of engineering and science to explore, collaborate, and
+					create innovative solutions through learning, sharing, and building together.</h3>
+				<!-- Decorative element -->
+				<div style="text-align: right;">
+					<div
+						style="display:inline-block; width: 40px; height: 40px; background: #FF4081; clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Dynamic Events List -->
+	<section id="events" class="container" style="padding: 4rem 0;">
+		<div
+			style="background: #000; color: white; display: inline-block; padding: 0.5rem 1rem; transform: rotate(-2deg); margin-bottom: 2rem; font-weight: 800; font-size: 1.2rem; box-shadow: 4px 4px 0px rgba(0,0,0,0.2);">
+			UPCOMING EVENTS
+		</div>
+
+		<div id="events-list">
+			<!-- Events will be injected here by script.js -->
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<div class="ticker-wrap">
+			<div class="ticker">
+				TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp;
+				TinkerHub Ceal
+				&nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp;
+				TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp;
+				TinkerHub Ceal
+				&nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp;
+			</div>
+		</div>
+
+		<div class="footer-content">
+			<h2>Join the Movement</h2>
+			<div
+				style="display: inline-block; background: #333; color: #FDD835; padding: 0.8rem 2rem; border-radius: 50px; margin-bottom: 3rem; font-weight: 600;">
+				TinkerHub.org
+			</div>
+
+			<div class="stats-container">
+				<div class="stat-circle">
+					<span class="stat-number">200+</span>
+					<span class="stat-label">community<br>members</span>
+				</div>
+				<div class="stat-circle" style="background: #E8D5B5;">
+					<span class="stat-number">20+</span>
+					<span class="stat-label">events</span>
+				</div>
+				<div class="stat-circle" style="background: #F0E0C0;">
+					<span class="stat-number">50+</span>
+					<span class="stat-label">projects</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			&copy; <span id="year"></span> TinkerHub CEAl. All Rights Reserved.
+		</div>
+	</footer>
+</body>
+
+</html>
