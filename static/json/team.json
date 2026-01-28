@@ -1,62 +1,7 @@
 [
 	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
-		"image": "team1.jpg"
-	},
-	{
-		"name": "John Doe",
-		"position": "Lead",
+		"name": "test",
+		"position": "test",
 		"image": "team1.jpg"
 	}
 ]
