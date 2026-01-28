@@ -50,6 +50,15 @@ ul {
 	justify-content: center;
 }
 
+.footer-bottom a {
+	color: rgba(149, 4, 247, 0.438);
+	transition: color 0.2s ease;
+}
+
+.footer-bottom a:hover {
+	color: rgba(255, 255, 255, 0.788);
+}
+
 /* Navigation */
 .navbar {
 	background-color: var(--primary-yellow);
@@ -767,6 +776,7 @@ footer {
 	animation: bounceFloat 3s infinite ease-in-out;
 	z-index: 10;
 }
+
 
 @keyframes bounceFloat {
 
