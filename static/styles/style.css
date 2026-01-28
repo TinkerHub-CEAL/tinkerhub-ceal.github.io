@@ -1143,27 +1143,19 @@ footer {
 
 /* Team Hero Section */
 .team-hero {
-	padding: 4rem 0 2rem;
+	padding: 2rem 0 1rem;
 	text-align: left;
-}
-
-.team-intro {
-	font-size: 1.2rem;
-	color: #666;
-	max-width: 600px;
-	margin-top: 1.5rem;
-	line-height: 1.6;
 }
 
 /* Team Section */
 .team-section {
-	padding: 3rem 0 4rem;
+	padding: 0 0 4rem;
 }
 
 .team-grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 3rem;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0.5rem;
 	margin-top: 2rem;
 }
 
@@ -1197,7 +1189,7 @@ footer {
 /* Member Photo */
 .member-photo-container {
 	width: 100%;
-	height: 300px;
+	height: 320px;
 	overflow: hidden;
 	background: #f0f0f0;
 	position: relative;
@@ -1236,21 +1228,21 @@ footer {
 
 /* Member Info */
 .member-info {
-	padding: 1.5rem;
+	padding: 1rem;
 	width: 100%;
 }
 
 .member-name {
 	font-family: var(--font-serif);
 	font-style: italic;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	font-weight: 600;
-	margin: 0 0 0.5rem 0;
+	margin: 0 0 0.3rem 0;
 	color: #000;
 }
 
 .member-position {
-	font-size: 0.95rem;
+	font-size: 0.85rem;
 	color: #666;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -1262,60 +1254,69 @@ footer {
 .member-info::before {
 	content: '★';
 	display: block;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	color: var(--primary-yellow);
-	margin-bottom: 0.5rem;
+	margin-bottom: 0.3rem;
 }
 
 /* Team Page Responsive Styles */
 @media (max-width: 968px) {
 	.team-grid {
-		grid-template-columns: repeat(2, 1fr);
-		gap: 2rem;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.5rem;
+	}
+
+	.member-photo-container {
+		height: 280px;
 	}
 }
 
 @media (max-width: 768px) {
 	.team-hero {
-		padding: 3rem 0 1.5rem;
-	}
-
-	.team-intro {
-		font-size: 1rem;
+		padding: 1.5rem 0 1rem;
 	}
 
 	.team-grid {
-		grid-template-columns: 1fr;
-		gap: 2rem;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem;
 	}
 
 	.member-photo-container {
-		height: 250px;
+		height: 260px;
 	}
 
 	.member-name {
-		font-size: 1.3rem;
+		font-size: 1.1rem;
 	}
 
 	.member-position {
-		font-size: 0.85rem;
+		font-size: 0.75rem;
 	}
 }
 
 @media (max-width: 480px) {
+	.team-hero {
+		padding: 1rem 0 0.5rem;
+	}
+
 	.team-section {
-		padding: 2rem 0 3rem;
+		padding: 0 0 3rem;
+	}
+
+	.team-grid {
+		grid-template-columns: 1fr;
+		gap: 0.5rem;
 	}
 
 	.member-photo-container {
-		height: 200px;
+		height: 240px;
 	}
 
 	.member-info {
-		padding: 1rem;
+		padding: 0.75rem;
 	}
 
 	.member-name {
-		font-size: 1.2rem;
+		font-size: 1rem;
 	}
 }
