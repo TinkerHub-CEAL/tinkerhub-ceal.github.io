@@ -3,30 +3,5 @@
 		"name": "John Doe",
 		"position": "Lead",
 		"image": "team1.jpg"
-	},
-	{
-		"name": "Jane Smith",
-		"position": "Co-Lead",
-		"image": "team2.jpg"
-	},
-	{
-		"name": "Alex Johnson",
-		"position": "Technical Lead",
-		"image": "team3.jpg"
-	},
-	{
-		"name": "Sarah Williams",
-		"position": "Creative Lead",
-		"image": "team4.jpg"
-	},
-	{
-		"name": "Michael Brown",
-		"position": "Community Manager",
-		"image": "team5.jpg"
-	},
-	{
-		"name": "Emily Davis",
-		"position": "Events Coordinator",
-		"image": "team6.jpg"
 	}
 ]

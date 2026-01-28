@@ -4,23 +4,5 @@
 		"date": "Dec 18",
 		"time": "5:30 PM",
 		"link": "#"
-	},
-	{
-		"name": "Web Wizardry",
-		"date": "Jan 12",
-		"time": "4:00 PM",
-		"link": "#"
-	},
-	{
-		"name": "AI Symposium",
-		"date": "Jan 25",
-		"time": "6:00 PM",
-		"link": "#"
-	},
-	{
-		"name": "Hack Day",
-		"date": "Feb 05",
-		"time": "9:00 AM",
-		"link": "#"
 	}
 ]

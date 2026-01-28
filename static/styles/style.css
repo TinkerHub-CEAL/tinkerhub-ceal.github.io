@@ -11,7 +11,7 @@
 	/* Example accent */
 	--font-serif: 'Playfair Display', serif;
 	--font-sans: 'Inter', sans-serif;
-	--container-width: 1200px;
+	--container-width: 90vw;
 	--border-std: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -42,7 +42,6 @@ ul {
 .container {
 	max-width: var(--container-width);
 	margin: 0 auto;
-	padding: 0 2rem;
 }
 
 .flex-center {
@@ -67,7 +66,7 @@ ul {
 	align-items: center;
 	max-width: var(--container-width);
 	margin: 0 auto;
-	padding: 0 2rem;
+	padding: 0 0.75rem;
 }
 
 .brand {
@@ -281,7 +280,6 @@ ul {
    ========================================= */
 
 .highlights-section {
-	padding: 4rem 0;
 	position: relative;
 }
 
@@ -290,7 +288,6 @@ ul {
 	display: flex;
 	align-items: center;
 	gap: 2rem;
-	margin-top: 3rem;
 }
 
 .highlights-container {
@@ -303,7 +300,6 @@ ul {
 	-ms-overflow-style: none;
 	/* IE and Edge */
 	flex: 1;
-	padding: 1rem 0;
 }
 
 .highlights-container::-webkit-scrollbar {
@@ -428,9 +424,7 @@ ul {
 .image-placeholder-section {
 	position: relative;
 	width: 100%;
-	max-width: 1200px;
-	margin: 1rem auto;
-	padding: 0 2rem;
+	margin: 2rem auto;
 }
 
 .placeholder-image-container {
@@ -944,11 +938,19 @@ footer {
 
 	/* Container Padding */
 	.container {
-		padding: 0 1.5rem;
+		padding: 0 0.75rem;
 	}
 
 	.nav-container {
-		padding: 0 1.5rem;
+		padding: 0 0.75rem;
+	}
+
+	.about-graphics {
+		margin-top: 6vh;
+	}
+
+	.image-placeholder-section {
+		padding: 0 0.75rem;
 	}
 
 	/* Hero Section */
@@ -1013,10 +1015,7 @@ footer {
 		font-size: 1.2rem;
 	}
 
-	/* Image Placeholder */
-	.image-placeholder-section {
-		padding: 0 1rem;
-	}
+
 
 	.placeholder-image-container {
 		height: 250px;
@@ -1082,6 +1081,19 @@ footer {
 @media (max-width: 480px) {
 
 	/* Extra Small Devices */
+	/* Container Padding */
+	.container {
+		padding: 0 0.5rem;
+	}
+
+	.nav-container {
+		padding: 0 0.5rem;
+	}
+
+	.image-placeholder-section {
+		padding: 0 0.5rem;
+	}
+
 	.hero-text h1 {
 		font-size: 2rem;
 	}
