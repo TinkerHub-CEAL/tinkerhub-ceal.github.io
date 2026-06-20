@@ -1,0 +1,26 @@
+[
+	{
+		"type": "video",
+		"src": "static/videos/events/1.mp4"
+	},
+	{
+		"type": "image",
+		"src": "static/images/5.jpeg"
+	},
+	{
+		"type": "video",
+		"src": "static/videos/events/2.mp4"
+	},
+	{
+		"type": "video",
+		"src": "static/videos/events/3.mp4"
+	},
+	{
+		"type": "image",
+		"src": "static/images/team.jpeg"
+	},
+	{
+		"type": "image",
+		"src": "static/images/4.jpeg"
+	}
+]

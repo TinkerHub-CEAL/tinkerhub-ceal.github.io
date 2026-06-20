@@ -56,13 +56,7 @@
 			</div>
 
 			<!-- Right side Grid -->
-			<div class="hero-gallery">
-				<div class="gallery-card"></div>
-				<div class="gallery-card"></div>
-				<div class="gallery-card"></div>
-				<div class="gallery-card"></div>
-				<div class="gallery-card"></div>
-				<div class="gallery-card"></div>
+			<div class="hero-gallery" id="heroGallery">
 			</div>
 		</div>
 	</section>
@@ -72,12 +66,33 @@
 		<div class="about-content">
 			<div class="about-graphics">
 				<div class="sticker green">EVENTS</div>
-				<video muted autoplay loop class="video-container">
-
-					<source src="static/videos/2.mp4" type="video/mp4">
-					Your browser does not support the video tag.
-				</video>
-				<!-- </div> -->
+				<div class="video-slider-container">
+					<div class="video-slide active">
+						<video muted autoplay loop>
+							<source src="static/videos/events/1.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</div>
+					<div class="video-slide">
+						<video muted autoplay loop>
+							<source src="static/videos/events/2.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</div>
+					<div class="video-slide">
+						<video muted autoplay loop>
+							<source src="static/videos/events/3.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</div>
+					<!-- Controls -->
+					<button class="video-slider-btn prev-btn" aria-label="Previous video">
+						<ion-icon name="chevron-back-outline"></ion-icon>
+					</button>
+					<button class="video-slider-btn next-btn" aria-label="Next video">
+						<ion-icon name="chevron-forward-outline"></ion-icon>
+					</button>
+				</div>
 			</div>
 			<div class="about-text">
 				<h3><span style="font-weight: 800;">TinkerHub CEAL</span> is a student community that strives to bring
