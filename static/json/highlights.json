@@ -1,27 +1,27 @@
 [
 	{
-		"name": "test",
-		"date": "November 25, 2025",
+		"name": "Pixel to Product",
+		"date": "July 28, 2025",
 		"image": "1.jpeg"
 	},
 	{
-		"name": "test",
-		"date": "November 25, 2025",
+		"name": "Product Building",
+		"date": "February 07, 2026",
 		"image": "2.jpeg"
 	},
 	{
-		"name": "test",
-		"date": "November 25, 2025",
+		"name": "Craft & Learn",
+		"date": "August 19, 2025",
 		"image": "3.jpeg"
 	},
 	{
-		"name": "test",
-		"date": "November 25, 2025",
+		"name": "TinkHerHack 4.0",
+		"date": "February 20, 2026",
 		"image": "4.jpeg"
 	},
 	{
-		"name": "test",
-		"date": "November 25, 2025",
+		"name": "Useless Project 2.0",
+		"date": "june 8, 2026",
 		"image": "5.jpeg"
 	}
 ]
