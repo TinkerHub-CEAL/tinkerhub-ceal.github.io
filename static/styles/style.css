@@ -51,12 +51,12 @@ ul {
 }
 
 .footer-bottom a {
-	color: rgba(149, 4, 247, 0.438);
+	color: var(--primary-yellow);
 	transition: color 0.2s ease;
 }
 
 .footer-bottom a:hover {
-	color: rgba(255, 255, 255, 0.788);
+	color: var(--accent-blue);
 }
 
 /* Navigation */
