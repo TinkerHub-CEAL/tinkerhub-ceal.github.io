@@ -6,6 +6,16 @@ const eventsContainer = document.getElementById('events-list');
 
 // --- Render Events ---
 function renderEvents() {
+	const eventsSection = document.getElementById('events');
+	if (!eventsSection) return;
+
+	if (!events || events.length === 0) {
+		eventsSection.style.display = 'none';
+		return;
+	}
+
+	eventsSection.style.display = 'block';
+
 	if (!eventsContainer) return;
 
 	eventsContainer.innerHTML = events.map((event, index) => `
@@ -146,12 +156,13 @@ async function loadEvents() {
 		if (!response.ok) throw new Error('Failed to fetch events');
 		events = await response.json();
 		renderEvents();
-		setTimeout(setupObservers, 100);
 	} catch (error) {
 		console.error('Error loading events:', error);
 		if (eventsContainer) {
 			eventsContainer.innerHTML = `<p style="text-align: center; color: #999;">Unable to load events at this time.</p>`;
 		}
+	} finally {
+		setTimeout(setupObservers, 100);
 	}
 }
 
@@ -258,10 +269,125 @@ async function loadHighlights() {
 	}
 }
 
+// --- Video Slider ---
+function initVideoSlider() {
+	const sliderContainer = document.querySelector('.video-slider-container');
+	if (!sliderContainer) return;
+
+	const slides = sliderContainer.querySelectorAll('.video-slide');
+	const prevBtn = sliderContainer.querySelector('.prev-btn');
+	const nextBtn = sliderContainer.querySelector('.next-btn');
+	let currentIndex = 0;
+
+	if (slides.length <= 1) {
+		if (prevBtn) prevBtn.style.display = 'none';
+		if (nextBtn) nextBtn.style.display = 'none';
+		return;
+	}
+
+	function showVideo(index) {
+		slides.forEach((slide, i) => {
+			const video = slide.querySelector('video');
+			if (i === index) {
+				slide.classList.add('active');
+				if (video) {
+					video.currentTime = 0;
+					video.play().catch(err => console.log('Autoplay blocked:', err));
+				}
+			} else {
+				slide.classList.remove('active');
+				if (video) {
+					video.pause();
+				}
+			}
+		});
+	}
+
+	prevBtn.addEventListener('click', () => {
+		currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+		showVideo(currentIndex);
+	});
+
+	nextBtn.addEventListener('click', () => {
+		currentIndex = (currentIndex + 1) % slides.length;
+		showVideo(currentIndex);
+	});
+
+	// Initialize the first video
+	showVideo(currentIndex);
+}
+
+// --- Hero Gallery ---
+let galleryItems = [];
+const heroGalleryContainer = document.getElementById('heroGallery');
+
+function renderHeroGallery() {
+	if (!heroGalleryContainer) return;
+
+	// Render items from json
+	let cardsHtml = galleryItems.map(item => {
+		if (item.type === 'video') {
+			return `
+				<div class="gallery-card">
+					<video muted autoplay loop class="video-container">
+						<source src="${item.src}" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+				</div>
+			`;
+		} else {
+			return `
+				<div class="gallery-card">
+					<img src="${item.src}" alt="Gallery Image" class="placeholder-image">
+				</div>
+			`;
+		}
+	}).join('');
+
+	// Pad with empty cards to ensure at least 6 cards total
+	const totalCardsNeeded = 6;
+	if (galleryItems.length < totalCardsNeeded) {
+		const emptyCardsCount = totalCardsNeeded - galleryItems.length;
+		for (let i = 0; i < emptyCardsCount; i++) {
+			cardsHtml += `<div class="gallery-card"></div>`;
+		}
+	}
+
+	heroGalleryContainer.innerHTML = cardsHtml;
+
+	// Trigger animation for the newly created cards
+	document.querySelectorAll('.gallery-card').forEach(card => card.classList.add('animate-card'));
+}
+
+async function loadHeroGallery() {
+	try {
+		const response = await fetch('./static/json/gallery.json');
+		if (!response.ok) throw new Error('Failed to fetch gallery data');
+		galleryItems = await response.json();
+		renderHeroGallery();
+	} catch (error) {
+		console.error('Error loading gallery:', error);
+		// Fallback to static cards if JSON fails to load
+		if (heroGalleryContainer && heroGalleryContainer.children.length === 0) {
+			heroGalleryContainer.innerHTML = `
+				<div class="gallery-card"></div>
+				<div class="gallery-card"></div>
+				<div class="gallery-card"></div>
+				<div class="gallery-card"></div>
+				<div class="gallery-card"></div>
+				<div class="gallery-card"></div>
+			`;
+			document.querySelectorAll('.gallery-card').forEach(card => card.classList.add('animate-card'));
+		}
+	}
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 	updateCopyright();
 	loadEvents();
 	loadHighlights();
+	initVideoSlider();
+	loadHeroGallery();
 
 	// Hamburger Menu Toggle
 	const hamburger = document.getElementById('hamburger');

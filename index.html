@@ -56,13 +56,7 @@
 			</div>
 
 			<!-- Right side Grid -->
-			<div class="hero-gallery">
-				<div class="gallery-card"></div>
-				<div class="gallery-card"></div>
-				<div class="gallery-card"></div>
-				<div class="gallery-card"></div>
-				<div class="gallery-card"></div>
-				<div class="gallery-card"></div>
+			<div class="hero-gallery" id="heroGallery">
 			</div>
 		</div>
 	</section>
@@ -72,11 +66,32 @@
 		<div class="about-content">
 			<div class="about-graphics">
 				<div class="sticker green">EVENTS</div>
-				<div class="video-container">
-					<video muted autoplay loop>
-						<source src="static/videos/test.mp4" type="video/mp4">
-						Your browser does not support the video tag.
-					</video>
+				<div class="video-slider-container">
+					<div class="video-slide active">
+						<video muted autoplay loop>
+							<source src="static/videos/events/1.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</div>
+					<div class="video-slide">
+						<video muted autoplay loop>
+							<source src="static/videos/events/2.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</div>
+					<div class="video-slide">
+						<video muted autoplay loop>
+							<source src="static/videos/events/3.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</div>
+					<!-- Controls -->
+					<button class="video-slider-btn prev-btn" aria-label="Previous video">
+						<ion-icon name="chevron-back-outline"></ion-icon>
+					</button>
+					<button class="video-slider-btn next-btn" aria-label="Next video">
+						<ion-icon name="chevron-forward-outline"></ion-icon>
+					</button>
 				</div>
 			</div>
 			<div class="about-text">
@@ -153,11 +168,11 @@
 					<span class="stat-label">community<br>members</span>
 				</div>
 				<div class="stat-circle" style="background: #E8D5B5;">
-					<span class="stat-number">20+</span>
+					<span class="stat-number">40+</span>
 					<span class="stat-label">events</span>
 				</div>
 				<div class="stat-circle" style="background: #F0E0C0;">
-					<span class="stat-number">50+</span>
+					<span class="stat-number">70+</span>
 					<span class="stat-label">projects</span>
 				</div>
 			</div>
@@ -166,7 +181,7 @@
 	<!-- Image Placeholder Section -->
 	<section class="image-placeholder-section container">
 		<div class="placeholder-image-container">
-			<img src="./static/images/tump.jpg" alt="Community Image" class="placeholder-image">
+			<img src="./static/images/team.jpeg" alt="Community Image" class="placeholder-image">
 		</div>
 	</section>
 	<div class="footer-bottom">
