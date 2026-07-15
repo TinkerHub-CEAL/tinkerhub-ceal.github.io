@@ -1,7 +1,32 @@
 [
 	{
-		"name": "test",
-		"position": "test",
-		"image": "team1.jpg"
+		"name": "Lekshmy S Raju",
+		"position": "Campus Lead",
+		"image": "lekshmy.png"
+	},
+	{
+		"name": "Dr. Greeshma N Gopal",
+		"position": "Faculty Coodinator",
+		"image": "greeshma.png"
+	},
+	{
+		"name": "Lekshmy S Raju",
+		"position": "Faculty Coodinator",
+		"image": "preseeja.png"
+	},
+	{
+		"name": "Aromal A S",
+		"position": "Learning Coordinator",
+		"image": "aromal.png"
+	},
+	{
+		"name": "Nadhiya S",
+		"position": "Women In Tech",
+		"image": "nadhiya.png"
+	},
+	{
+		"name": "Adithyan T Nair",
+		"position": "Outreach",
+		"image": "adithyan.png"
 	}
 ]

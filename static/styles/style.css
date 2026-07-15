@@ -1301,7 +1301,7 @@ footer {
 
 .member-photo {
 	width: 100%;
-	height: 100%;
+	/* height: 100%; */
 	object-fit: cover;
 	transition: transform 0.3s ease;
 }
@@ -1311,7 +1311,7 @@ footer {
 }
 
 /* Placeholder for missing images */
-.member-photo-container::before {
+/* .member-photo-container::before {
 	content: '';
 	position: absolute;
 	top: 50%;
@@ -1323,7 +1323,7 @@ footer {
 	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 	opacity: 0.3;
 	z-index: 0;
-}
+} */
 
 .member-photo[src]:not([src=""])~.member-photo-container::before {
 	display: none;

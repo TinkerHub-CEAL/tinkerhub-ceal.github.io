@@ -431,7 +431,7 @@ function renderTeam() {
 	teamGrid.innerHTML = teamMembers.map((member, index) => `
 		<div class="team-member-card" data-delay="${index * 100}">
 			<div class="member-photo-container">
-				<img src="./static/images/${member.image}" alt="${member.name}" class="member-photo" onerror="this.style.display='none'">
+				<img src="./static/images/core_team/${member.image}" alt="${member.name}" class="member-photo" onerror="this.style.display='none'">
 			</div>
 			<div class="member-info">
 				<h3 class="member-name">${member.name}</h3>
