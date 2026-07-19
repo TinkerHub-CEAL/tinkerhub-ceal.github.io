@@ -1,0 +1,32 @@
+[
+	{
+		"title": "Official Website",
+		"url": "https://tinkerhub.ceal.in",
+		"icon": "globe-outline"
+	},
+	{
+		"title": "GitHub",
+		"url": "https://github.com/TinkerHub-CEAL",
+		"icon": "logo-github"
+	},
+	{
+		"title": "Instagram",
+		"url": "https://www.instagram.com/tinkerhubceal/",
+		"icon": "logo-instagram"
+	},
+	{
+		"title": "Discord Community",
+		"url": "https://discord.gg/A83zFdy3t4",
+		"icon": "logo-discord"
+	},
+	{
+		"title": "WhatsApp Channel",
+		"url": "https://chat.whatsapp.com/DypbXndu8F2JaTkqwjT1HD",
+		"icon": "logo-whatsapp"
+	},
+	{
+		"title": "LinkedIn",
+		"url": "https://www.linkedin.com/company/tinkerhub-ceal",
+		"icon": "logo-linkedin"
+	}
+]

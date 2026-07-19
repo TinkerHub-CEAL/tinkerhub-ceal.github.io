@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Links | TinkerHub CEAl</title>
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@1,500;1,700&display=swap"
+		rel="stylesheet">
+	<!-- Ionicons -->
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+
+	<style>
+		:root {
+			--primary-yellow: #FFEC3D;
+			--text-black: #111111;
+			--bg-white: #FFFCF5;
+			--font-serif: 'Playfair Display', serif;
+			--font-sans: 'Inter', sans-serif;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: var(--font-sans);
+			background-color: var(--bg-white);
+			color: var(--text-black);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			padding: 2rem 1rem;
+		}
+
+		.linktree-container {
+			width: 100%;
+			max-width: 500px;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		/* Profile Section */
+		.profile {
+			margin-bottom: 2.5rem;
+			position: relative;
+		}
+
+		.avatar-container {
+			width: 90px;
+			height: 90px;
+			background-color: var(--primary-yellow);
+			border: 2px solid var(--text-black);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 1.25rem auto;
+			box-shadow: 4px 4px 0px var(--text-black);
+			overflow: hidden;
+		}
+
+		.avatar-container img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			padding: 10px;
+		}
+
+		.profile-title {
+			font-family: var(--font-serif);
+			font-size: 2.2rem;
+			font-weight: 700;
+			margin-bottom: 0.5rem;
+			font-style: italic;
+		}
+
+		.profile-subtitle {
+			font-size: 0.9rem;
+			font-weight: 600;
+			color: #111;
+			text-transform: uppercase;
+			letter-spacing: 1.5px;
+			display: inline-block;
+			background: var(--primary-yellow);
+			padding: 0.2rem 0.8rem;
+			transform: rotate(-2deg);
+			border: 1px solid var(--text-black);
+			box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+		}
+
+		/* Links List */
+		.links-list {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			gap: 1.1rem;
+			margin-bottom: 3rem;
+		}
+
+		.link-card {
+			display: flex;
+			align-items: center;
+			background: #ffffff;
+			border: 2px solid var(--text-black);
+			padding: 1rem 1.25rem;
+			text-decoration: none;
+			color: var(--text-black);
+			font-weight: 600;
+			font-size: 1.05rem;
+			border-radius: 12px;
+			box-shadow: 4px 4px 0px var(--text-black);
+			transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, background-color 0.2s ease;
+			position: relative;
+			text-align: left;
+		}
+
+		.link-card:hover {
+			transform: translate(-3px, -3px);
+			box-shadow: 7px 7px 0px var(--text-black);
+			background-color: var(--primary-yellow);
+		}
+
+		.link-icon-box {
+			font-size: 1.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-right: 1.1rem;
+			width: 28px;
+			color: var(--text-black);
+			transition: transform 0.3s ease;
+		}
+
+		.link-card:hover .link-icon-box {
+			transform: scale(1.15) rotate(5deg);
+		}
+
+		.link-title {
+			flex-grow: 1;
+			font-weight: 800;
+			letter-spacing: 0.3px;
+		}
+
+		.link-arrow {
+			font-size: 1.3rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transform: rotate(-45deg);
+			transition: transform 0.3s ease;
+		}
+
+		.link-card:hover .link-arrow {
+			transform: rotate(0deg) scale(1.1);
+		}
+
+		/* Footer */
+		footer {
+			font-size: 0.8rem;
+			color: #777;
+		}
+
+		footer strong {
+			color: var(--text-black);
+		}
+
+		/* Skeleton loader style */
+		.skeleton {
+			background: #eee;
+			background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+			background-size: 200% 100%;
+			animation: 1.5s shine linear infinite;
+		}
+
+		@keyframes shine {
+			to {
+				background-position-x: -200%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="linktree-container">
+		<!-- Profile Header -->
+		<div class="profile">
+			<div class="avatar-container">
+				<img src="../static/images/logo.png" alt="TinkerHub CEAL Logo">
+			</div>
+			<h1 class="profile-title">TinkerHub CEAL</h1>
+			<p class="profile-subtitle">Learn • Build • Share</p>
+		</div>
+
+		<!-- Links List -->
+		<div class="links-list" id="linksList">
+			<div class="link-card skeleton" style="height: 58px; opacity: 0.5;"></div>
+			<div class="link-card skeleton" style="height: 58px; opacity: 0.5;"></div>
+			<div class="link-card skeleton" style="height: 58px; opacity: 0.5;"></div>
+			<div class="link-card skeleton" style="height: 58px; opacity: 0.5;"></div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<p>© Copyright <strong id="yr">2026</strong> TinkerHub CEAL | By <a href="https://github.com/zyndor1548"
+					target="_blank"
+					style="color: inherit; text-decoration: underline; font-weight: bold;">zyndor1548</a>. All Rights
+				Reserved</p>
+		</footer>
+	</div>
+
+	<script>
+		document.getElementById("yr").innerHTML = new Date().getFullYear();
+
+		// Fetch links dynamic content
+		async function fetchLinks() {
+			const listEl = document.getElementById("linksList");
+			try {
+				const response = await fetch("../static/json/links.json");
+				if (!response.ok) throw new Error("Failed to fetch links");
+				const links = await response.json();
+
+				listEl.innerHTML = links.map(link => `
+					<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="link-card">
+						<div class="link-icon-box">
+							<ion-icon name="${link.icon}"></ion-icon>
+						</div>
+						<span class="link-title">${link.title}</span>
+						<div class="link-arrow">
+							<ion-icon name="arrow-forward-outline"></ion-icon>
+						</div>
+					</a>
+				`).join('');
+			} catch (err) {
+				console.error("Error loading Linktree links:", err);
+				listEl.innerHTML = `
+					<p style="color: #ff4081; font-weight: bold; background: #ffe6eb; border: 2px solid #ff4081; padding: 1rem; border-radius: 12px; box-shadow: 4px 4px 0px #ff4081;">
+						Oops! Could not load the links. Please try again later.
+					</p>
+				`;
+			}
+		}
+
+		window.addEventListener("DOMContentLoaded", fetchLinks);
+	</script>
+</body>
+
+</html>
