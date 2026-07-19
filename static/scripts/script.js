@@ -1,5 +1,13 @@
 console.log('TinkerHub CEAl script loaded (Enhanced)');
 
+// Determine base path prefix depending on whether we are in a subdirectory (e.g. /about/, /team/, /link/)
+const isSubdir = window.location.pathname.includes('/about') || 
+                 window.location.pathname.includes('/team') || 
+                 window.location.pathname.includes('/link');
+
+const basePrefix = isSubdir ? '../' : './';
+
+
 let events = [];
 
 const eventsContainer = document.getElementById('events-list');
@@ -152,7 +160,7 @@ function updateCopyright() {
 
 async function loadEvents() {
 	try {
-		const response = await fetch('./static/json/events.json');
+		const response = await fetch(basePrefix + 'static/json/events.json');
 		if (!response.ok) throw new Error('Failed to fetch events');
 		events = await response.json();
 		renderEvents();
@@ -183,7 +191,7 @@ function renderHighlights() {
 				<div class="highlight-star-marker">★</div>
 			</div>
 			<div class="highlight-image-box">
-				<img src="./static/images/${highlight.image}" alt="${highlight.name}" onerror="this.style.display='none'">
+				<img src="${basePrefix}static/images/${highlight.image}" alt="${highlight.name}" onerror="this.style.display='none'">
 			</div>
 		</div>
 	`).join('');
@@ -256,7 +264,7 @@ function initCarousel() {
 
 async function loadHighlights() {
 	try {
-		const response = await fetch('./static/json/highlights.json');
+		const response = await fetch(basePrefix + 'static/json/highlights.json');
 		if (!response.ok) throw new Error('Failed to fetch highlights');
 		highlights = await response.json();
 		renderHighlights();
@@ -326,11 +334,12 @@ function renderHeroGallery() {
 
 	// Render items from json
 	let cardsHtml = galleryItems.map(item => {
+		const srcPath = item.src.startsWith('static/') ? (basePrefix + item.src) : item.src;
 		if (item.type === 'video') {
 			return `
 				<div class="gallery-card">
 					<video muted autoplay loop class="video-container">
-						<source src="${item.src}" type="video/mp4">
+						<source src="${srcPath}" type="video/mp4">
 						Your browser does not support the video tag.
 					</video>
 				</div>
@@ -338,7 +347,7 @@ function renderHeroGallery() {
 		} else {
 			return `
 				<div class="gallery-card">
-					<img src="${item.src}" alt="Gallery Image" class="placeholder-image">
+					<img src="${srcPath}" alt="Gallery Image" class="placeholder-image">
 				</div>
 			`;
 		}
@@ -361,7 +370,7 @@ function renderHeroGallery() {
 
 async function loadHeroGallery() {
 	try {
-		const response = await fetch('./static/json/gallery.json');
+		const response = await fetch(basePrefix + 'static/json/gallery.json');
 		if (!response.ok) throw new Error('Failed to fetch gallery data');
 		galleryItems = await response.json();
 		renderHeroGallery();
@@ -454,7 +463,7 @@ function renderTeam() {
 // Load team data
 async function loadTeam() {
 	try {
-		const response = await fetch('./static/json/team.json');
+		const response = await fetch(basePrefix + 'static/json/team.json');
 		if (!response.ok) throw new Error('Failed to fetch team data');
 		teamMembers = await response.json();
 		renderTeam();
