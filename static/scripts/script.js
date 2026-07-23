@@ -1,18 +1,25 @@
-console.log('TinkerHub CEAl script loaded (Unified Events System)');
+// Determine base path prefix dynamically
+function getBasePrefix() {
+	const scriptEl = document.querySelector('script[src*="script.js"]');
+	if (scriptEl) {
+		const src = scriptEl.getAttribute('src');
+		const match = src.match(/^(.*?)static\//);
+		if (match && match[1] !== undefined) {
+			return match[1];
+		}
+	}
+	const isSubdir = window.location.pathname.includes('/about') ||
+		window.location.pathname.includes('/team') ||
+		window.location.pathname.includes('/link') ||
+		window.location.pathname.includes('/events');
+	return isSubdir ? '../' : './';
+}
 
-// Determine base path prefix depending on whether we are in a subdirectory (e.g. /about/, /team/, /link/, /events/)
-const isSubdir = window.location.pathname.includes('/about') ||
-	window.location.pathname.includes('/team') ||
-	window.location.pathname.includes('/link') ||
-	window.location.pathname.includes('/events');
-
-const basePrefix = isSubdir ? '../' : './';
+const basePrefix = getBasePrefix();
 
 let allEventsList = [];
 let upcomingEvents = [];
 let highlights = [];
-
-const eventsContainer = document.getElementById('events-list');
 
 // Helper to parse date strings cleanly
 function parseEventDate(dateStr, timeStr = '') {
@@ -40,6 +47,7 @@ function isPastEvent(event) {
 // --- Render Upcoming Events on Home Page ---
 function renderEvents() {
 	const eventsSection = document.getElementById('events');
+	const eventsContainer = document.getElementById('events-list');
 	if (!eventsSection) return;
 
 	if (!upcomingEvents || upcomingEvents.length === 0) {
@@ -213,8 +221,18 @@ async function loadEventsData() {
 		initEventsPage();
 	} catch (error) {
 		console.error('Error loading events:', error);
+		const eventsContainer = document.getElementById('events-list');
 		if (eventsContainer) {
 			eventsContainer.innerHTML = `<p style="text-align: center; color: #999;">Unable to load events at this time.</p>`;
+		}
+		const eventsGrid = document.getElementById('eventsGrid');
+		if (eventsGrid) {
+			eventsGrid.innerHTML = `
+				<div style="grid-column: 1/-1; text-align: center; padding: 3rem; background: white; border: 2px dashed #000; border-radius: 12px;">
+					<h3 style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; margin-bottom: 0.5rem;">Unable to load events</h3>
+					<p style="color: #666;">Please check back later or refresh the page.</p>
+				</div>
+			`;
 		}
 	} finally {
 		setTimeout(setupObservers, 100);
@@ -230,9 +248,8 @@ async function loadHighlights() {
 }
 
 // --- Highlights Carousel ---
-const highlightsContainer = document.getElementById('highlightsContainer');
-
 function renderHighlights() {
+	const highlightsContainer = document.getElementById('highlightsContainer');
 	if (!highlightsContainer) return;
 
 	if (!highlights || highlights.length === 0) {
@@ -263,7 +280,7 @@ function renderHighlights() {
 }
 
 function initCarousel() {
-	const container = highlightsContainer;
+	const container = document.getElementById('highlightsContainer');
 	const prevBtn = document.getElementById('highlightPrev');
 	const nextBtn = document.getElementById('highlightNext');
 
@@ -364,9 +381,9 @@ function initVideoSlider() {
 
 // --- Hero Gallery ---
 let galleryItems = [];
-const heroGalleryContainer = document.getElementById('heroGallery');
 
 function renderHeroGallery() {
+	const heroGalleryContainer = document.getElementById('heroGallery');
 	if (!heroGalleryContainer) return;
 
 	// Render items from json
@@ -406,6 +423,7 @@ function renderHeroGallery() {
 }
 
 async function loadHeroGallery() {
+	const heroGalleryContainer = document.getElementById('heroGallery');
 	try {
 		const response = await fetch(basePrefix + 'static/json/gallery.json');
 		if (!response.ok) throw new Error('Failed to fetch gallery data');
@@ -435,6 +453,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	initVideoSlider();
 	loadHeroGallery();
 	initMediaPopupSystem();
+	if (document.getElementById('teamGrid')) {
+		loadTeam();
+	}
 
 	// Hamburger Menu Toggle
 	const hamburger = document.getElementById('hamburger');
@@ -469,10 +490,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // =========================================
 
 let teamMembers = [];
-const teamGrid = document.getElementById('teamGrid');
 
 // Render team members
 function renderTeam() {
+	const teamGrid = document.getElementById('teamGrid');
 	if (!teamGrid) return;
 
 	teamGrid.innerHTML = teamMembers.map((member, index) => {
@@ -512,6 +533,7 @@ function renderTeam() {
 
 // Load team data
 async function loadTeam() {
+	const teamGrid = document.getElementById('teamGrid');
 	try {
 		const response = await fetch(basePrefix + 'static/json/team.json');
 		if (!response.ok) throw new Error('Failed to fetch team data');
@@ -525,20 +547,12 @@ async function loadTeam() {
 	}
 }
 
-// Initialize team page if on team page
-if (teamGrid) {
-	document.addEventListener('DOMContentLoaded', () => {
-		loadTeam();
-	});
-}
-
 // =========================================
 // DEDICATED EVENTS PAGE FUNCTIONALITY
 // =========================================
 
-const eventsGrid = document.getElementById('eventsGrid');
-
 function initEventsPage() {
+	const eventsGrid = document.getElementById('eventsGrid');
 	if (!eventsGrid) return;
 
 	const filterBtns = document.querySelectorAll('.events-filter-btn');
@@ -576,6 +590,7 @@ function initEventsPage() {
 }
 
 function renderEventsPageCards(filteredList) {
+	const eventsGrid = document.getElementById('eventsGrid');
 	if (!eventsGrid) return;
 
 	if (filteredList.length === 0) {
