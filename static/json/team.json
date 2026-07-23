@@ -45,6 +45,12 @@
 	{
 		"name": "Adithyan T Nair",
 		"position": "Outreach",
-		"image": "adithyan.png"
+		"image": "adithyan.png",
+		"socials": {
+			"linkedin": "https://www.linkedin.com/in/adithyan-t-nair",
+			"github": "https://github.com/Adithyan-T-Nair",
+			"instagram": "https://www.instagram.com/loup_roi_",
+			"email": "mailto:adithyantnair2005@gmail.com"
+		}
 	}
 ]
