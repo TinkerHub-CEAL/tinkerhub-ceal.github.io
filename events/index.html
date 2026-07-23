@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Our Team - TinkerHub CEAl</title>
+	<title>Events - TinkerHub CEAl</title>
 	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,26 +34,33 @@
 			</button>
 			<div class="nav-links" id="navLinks">
 				<a href="../">Home</a>
-				<a href="../events/">Events</a>
+				<a href="../events/" class="active">Events</a>
 				<a href="../#highlights">Highlight</a>
-				<a href="../team/" class="active">Our Team</a>
+				<a href="../team/">Our Team</a>
 				<a href="../about/">About</a>
 			</div>
 		</div>
 	</nav>
 
-	<!-- Team Hero Section -->
-	<section class="team-hero container" style="padding-top: 4rem;">
+	<!-- Events Hero Section -->
+	<section class="events-hero container" style="padding-top: 4rem;">
 		<div class="highlight-header-container">
-			<div class="sticker-stack-green">MEET</div>
-			<div class="sticker-stack-black">OUR TEAM</div>
+			<div class="sticker-stack-green">EXPLORE</div>
+			<div class="sticker-stack-black">EVENTS</div>
+		</div>
+
+		<!-- Filter Tabs -->
+		<div class="events-filter-nav">
+			<button class="events-filter-btn" data-filter="UPCOMING">UPCOMING</button>
+			<button class="events-filter-btn active" data-filter="ALL">ALL</button>
+			<button class="events-filter-btn" data-filter="PAST">PAST</button>
 		</div>
 	</section>
 
-	<!-- Team Grid Section -->
-	<section class="team-section container">
-		<div class="team-grid" id="teamGrid">
-			<!-- Team members will be injected here by team.js -->
+	<!-- Events Grid Section -->
+	<section class="events-section container" style="padding-bottom: 5rem;">
+		<div class="events-grid" id="eventsGrid">
+			<!-- Events injected dynamically by script.js -->
 		</div>
 	</section>
 
@@ -79,7 +86,8 @@
 		</div>
 	</footer>
 	<div class="footer-bottom">
-		By <a href="https://github.com/zyndor1548" target="_blank">zyndor1548</a> &copy; 2026. All Rights Reserved.
+		By <a href="https://github.com/zyndor1548" target="_blank">zyndor1548</a> &copy; <span id="year">2026</span>.
+		All Rights Reserved.
 	</div>
 
 </body>

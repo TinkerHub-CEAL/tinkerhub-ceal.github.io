@@ -1,1 +1,50 @@
-[]
+[
+	{
+		"name": "Pixel to Product",
+		"date": "July 28, 2025",
+		"time": "10:00 AM",
+		"description": "A comprehensive UI/UX workshop bridging the gap between pixel design and final product handoff.",
+		"image": "1.jpeg"
+	},
+	{
+		"name": "Product Building",
+		"date": "February 07, 2026",
+		"time": "02:00 PM",
+		"description": "Interactive session focused on product architecture, MVP development, and scaling developer ideas.",
+		"image": "2.jpeg"
+	},
+	{
+		"name": "Craft & Learn",
+		"date": "August 19, 2025",
+		"time": "11:00 AM",
+		"description": "Hands-on maker meetup where students craft hardware, design tools, and learn peer-to-peer.",
+		"image": "3.jpeg"
+	},
+	{
+		"name": "TinkHerHack 4.0",
+		"date": "February 20, 2026",
+		"time": "09:00 AM",
+		"description": "All-women flagship hackathon encouraging diversity, mentorship, and tech innovation.",
+		"image": "4.jpeg"
+	},
+	{
+		"name": "Useless Project 2.0",
+		"date": "August 8, 2025",
+		"time": "09:30 AM",
+		"description": "A fun, creative hackathon encouraging participants to build absurd and hilarious tech projects.",
+		"image": "5.jpeg"
+	},
+	{
+		"name": "Rbi Reelathon 2026: Orientation",
+		"date": "July 22, 2026",
+		"time": "02:00 PM",
+		"description": "Orientation on how to participate on Rbi Reelathon conducted by Rbi Trivandrum and awareness on cyber money frauds."
+	},
+	{
+		"name": "Chaya and puffs",
+		"date": "july 29, 2026",
+		"time" : "02:30 PM",
+		"description" : "TinkerHub Ceal Orientation"
+	}
+
+]
