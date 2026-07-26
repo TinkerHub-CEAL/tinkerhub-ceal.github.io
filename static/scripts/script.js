@@ -457,6 +457,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		loadTeam();
 	}
 
+	if (document.getElementById('profile-card')) {
+		initProfilePage();
+	}
+
 	// Hamburger Menu Toggle
 	const hamburger = document.getElementById('hamburger');
 	const navLinks = document.getElementById('navLinks');
@@ -490,17 +494,20 @@ document.addEventListener('DOMContentLoaded', () => {
 // =========================================
 
 let teamMembers = [];
+let currentYear = "2026";
 
 // Render team members
 function renderTeam() {
 	const teamGrid = document.getElementById('teamGrid');
 	if (!teamGrid) return;
 
-	teamGrid.innerHTML = teamMembers.map((member, index) => {
+	teamGrid.innerHTML = teamMembers.map((memberData, index) => {
+		const member = memberData.member;
+		const memberId = memberData.id;
 		const s = member.socials || {};
 		const hasSocials = s.linkedin || s.github || s.instagram || s.email || s.website;
 		return `
-			<div class="team-member-card" data-delay="${index * 80}">
+			<div class="team-member-card" data-delay="${index * 80}" onclick="window.location.href='${basePrefix}profile/#${memberId}'">
 				<div class="member-photo-container">
 					<img src="${basePrefix}static/images/core_team/${member.image}" alt="${member.name}" class="member-photo" onerror="this.src='${basePrefix}static/images/team.jpeg';">
 				</div>
@@ -509,11 +516,11 @@ function renderTeam() {
 					<p class="member-position">${member.position}</p>
 					${hasSocials ? `
 						<div class="member-socials">
-							${s.linkedin ? `<a href="${s.linkedin}" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>` : ''}
-							${s.github ? `<a href="${s.github}" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>` : ''}
-							${s.instagram ? `<a href="${s.instagram}" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a>` : ''}
-							${s.email ? `<a href="${s.email}" title="Email" aria-label="Email"><ion-icon name="mail-outline"></ion-icon></a>` : ''}
-							${s.website ? `<a href="${s.website}" target="_blank" rel="noopener" title="Website" aria-label="Website"><ion-icon name="globe-outline"></ion-icon></a>` : ''}
+							${s.linkedin ? `<a href="${s.linkedin}" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn" onclick="event.stopPropagation();"><ion-icon name="logo-linkedin"></ion-icon></a>` : ''}
+							${s.github ? `<a href="${s.github}" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub" onclick="event.stopPropagation();"><ion-icon name="logo-github"></ion-icon></a>` : ''}
+							${s.instagram ? `<a href="${s.instagram}" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram" onclick="event.stopPropagation();"><ion-icon name="logo-instagram"></ion-icon></a>` : ''}
+							${s.email ? `<a href="${s.email}" title="Email" aria-label="Email" onclick="event.stopPropagation();"><ion-icon name="mail-outline"></ion-icon></a>` : ''}
+							${s.website ? `<a href="${s.website}" target="_blank" rel="noopener" title="Website" aria-label="Website" onclick="event.stopPropagation();"><ion-icon name="globe-outline"></ion-icon></a>` : ''}
 						</div>
 					` : ''}
 				</div>
@@ -537,7 +544,14 @@ async function loadTeam() {
 	try {
 		const response = await fetch(basePrefix + 'static/json/team.json');
 		if (!response.ok) throw new Error('Failed to fetch team data');
-		teamMembers = await response.json();
+		const data = await response.json();
+
+		if (data[currentYear]) {
+			teamMembers = Object.entries(data[currentYear]).map(([id, member]) => ({ id, member }));
+		} else {
+			teamMembers = [];
+		}
+
 		renderTeam();
 	} catch (error) {
 		console.error('Error loading team:', error);
@@ -781,6 +795,106 @@ function initMediaPopupSystem() {
 		modal.classList.add('active');
 		document.body.style.overflow = 'hidden';
 	});
+}
+
+// =========================================
+// PROFILE PAGE FUNCTIONALITY
+// =========================================
+
+async function initProfilePage() {
+	let rawHash = window.location.hash.substring(1);
+	let parts = rawHash.split(/[\/#]+/);
+	let urlYear = parts.length > 1 ? parts[0] : currentYear;
+	let memberId = parts.length > 1 ? parts[1] : parts[0];
+
+	// Support navigation if hash changes while on the page
+	window.addEventListener('hashchange', () => {
+		window.location.reload();
+	});
+
+	const loadingEl = document.getElementById('loading');
+	const errorEl = document.getElementById('error');
+	const cardEl = document.getElementById('profile-card');
+
+	if (!urlYear || !memberId) {
+		showError();
+		return;
+	}
+
+	try {
+		const response = await fetch('../static/json/team.json');
+		if (!response.ok) throw new Error('Failed to load data');
+		const data = await response.json();
+
+		const yearData = data[urlYear];
+		if (!yearData || !yearData[memberId]) {
+			showError();
+			return;
+		}
+
+		renderProfile(yearData[memberId], urlYear);
+	} catch (err) {
+		console.error(err);
+		showError();
+	}
+
+	function showError() {
+		window.location.href = '../team/';
+	}
+
+	function renderProfile(member, year) {
+		document.title = `${member.name} - TinkerHub CEAL`;
+
+		const imgPath = `../static/images/core_team/${member.image}`;
+		const imgEl = document.getElementById('profile-image');
+		imgEl.src = imgPath;
+		imgEl.onerror = () => { imgEl.src = '../static/images/team.jpeg'; };
+
+		document.getElementById('profile-name').innerText = member.name;
+		document.getElementById('profile-position').innerText = member.position;
+		document.getElementById('card-year').innerText = year;
+
+		const quoteEl = document.getElementById('profile-quote');
+		if (member.quote) {
+			quoteEl.innerText = `"${member.quote}"`;
+		} else {
+			document.querySelector('.quote-box').style.display = 'none';
+		}
+
+		const interestsContainer = document.getElementById('profile-interests');
+		if (member.interests && member.interests.length > 0) {
+			interestsContainer.innerHTML = member.interests.map(i => `<span class="interest-tag">${i}</span>`).join('');
+		} else {
+			document.querySelector('.interests-section').style.display = 'none';
+		}
+
+		const socialsContainer = document.getElementById('profile-socials');
+		if (member.socials) {
+			const s = member.socials;
+			let html = '';
+			if (s.linkedin) html += `<a href="${s.linkedin}" target="_blank" title="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>`;
+			if (s.github) html += `<a href="${s.github}" target="_blank" title="GitHub"><ion-icon name="logo-github"></ion-icon></a>`;
+			if (s.instagram) html += `<a href="${s.instagram}" target="_blank" title="Instagram"><ion-icon name="logo-instagram"></ion-icon></a>`;
+			if (s.email) html += `<a href="${s.email}" title="Email"><ion-icon name="mail-outline"></ion-icon></a>`;
+			if (s.website) html += `<a href="${s.website}" target="_blank" title="Website"><ion-icon name="globe-outline"></ion-icon></a>`;
+
+			if (html) {
+				socialsContainer.innerHTML = html;
+			} else {
+				document.querySelector('.social-section').style.display = 'none';
+			}
+		} else {
+			document.querySelector('.social-section').style.display = 'none';
+		}
+
+		loadingEl.style.display = 'none';
+		cardEl.style.display = 'block';
+
+		// Trigger animation
+		setTimeout(() => {
+			cardEl.classList.add('visible');
+		}, 50);
+	}
 }
 
 

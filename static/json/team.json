@@ -1,56 +1,58 @@
-[
-	{
-		"name": "Lekshmy S Raju",
-		"position": "Campus Lead",
-		"image": "lekshmy.png",
-		"socials": {
-			"linkedin": "https://www.linkedin.com/in/lekshmy-s-raju-978a67345",
-			"github": "https://github.com/Lekshmy-sr",
-			"instagram": "https://www.instagram.com/lekshmy_s_r",
-			"email": "mailto:lekshmys33@gmail.com"
-		}
-	},
-	{
-		"name": "Dr. Greeshma N Gopal",
-		"position": "Faculty Coodinator",
-		"image": "greeshma.png"
-	},
-	{
-		"name": "Praseeja Arun",
-		"position": "Faculty Coodinator",
-		"image": "preseeja.png"
-	},
-	{
-		"name": "Aromal A S",
-		"position": "Learning Coordinator",
-		"image": "aromal.png",
-		"socials": {
-			"github": "https://github.com/zyndor1548",
-			"linkedin": "https://www.linkedin.com/in/aromal1548",
-			"instagram": "https://www.instagram.com/aromal1548",
-			"email": "mailto:a.s.aromal2006@gmail.com"
-		}
-	},
-	{
-		"name": "Nadhiya S",
-		"position": "Women In Tech",
-		"image": "nadhiya.png",
-		"socials": {
-			"linkedin": "https://www.linkedin.com/in/nadiya-s-1877b337a",
-			"github": "https://github.com/Nadiyashamnad",
-			"instagram": "https://www.instagram.com/__.nadi_ya.__",
-			"email": "mailto:nadiyashamnade@gmail.com"
-		}
-	},
-	{
-		"name": "Adithyan T Nair",
-		"position": "Outreach",
-		"image": "adithyan.png",
-		"socials": {
-			"linkedin": "https://www.linkedin.com/in/adithyan-t-nair",
-			"github": "https://github.com/Adithyan-T-Nair",
-			"instagram": "https://www.instagram.com/loup_roi_",
-			"email": "mailto:adithyantnair2005@gmail.com"
+{
+	"2026": {
+		"lekshmy": {
+			"name": "Lekshmy S Raju",
+			"position": "Campus Lead",
+			"image": "lekshmy.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/lekshmy-s-raju-978a67345",
+				"github": "https://github.com/Lekshmy-sr",
+				"instagram": "https://www.instagram.com/lekshmy_s_r",
+				"email": "mailto:lekshmys33@gmail.com"
+			}
+		},
+		"greeshma": {
+			"name": "Dr. Greeshma N Gopal",
+			"position": "Faculty Coodinator",
+			"image": "greeshma.png"
+		},
+		"praseeja": {
+			"name": "Praseeja Arun",
+			"position": "Faculty Coodinator",
+			"image": "preseeja.png"
+		},
+		"aromal": {
+			"name": "Aromal A S",
+			"position": "Learning Coordinator",
+			"image": "aromal.png",
+			"socials": {
+				"github": "https://github.com/zyndor1548",
+				"linkedin": "https://www.linkedin.com/in/aromal1548",
+				"instagram": "https://www.instagram.com/aromal1548",
+				"email": "mailto:a.s.aromal2006@gmail.com"
+			}
+		},
+		"nadiya": {
+			"name": "nadiya S",
+			"position": "Women In Tech",
+			"image": "nadiya.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/nadiya-s-1877b337a",
+				"github": "https://github.com/Nadiyashamnad",
+				"instagram": "https://www.instagram.com/__.nadi_ya.__",
+				"email": "mailto:nadiyashamnade@gmail.com"
+			}
+		},
+		"adithyan": {
+			"name": "Adithyan T Nair",
+			"position": "Outreach",
+			"image": "adithyan.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/adithyan-t-nair",
+				"github": "https://github.com/Adithyan-T-Nair",
+				"instagram": "https://www.instagram.com/loup_roi_",
+				"email": "mailto:adithyantnair2005@gmail.com"
+			}
 		}
 	}
-]
+}
