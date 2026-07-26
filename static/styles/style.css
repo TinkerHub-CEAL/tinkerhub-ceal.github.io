@@ -320,7 +320,8 @@ ul {
 
 /* Sticker on About */
 .sticker.green {
-	background: #4CAF50;
+	background: var(--primary-yellow);
+	color: #000;
 	transform: rotate(-10deg);
 	position: absolute;
 	top: -20px;
@@ -717,8 +718,8 @@ footer {
 }
 
 .sticker-stack-green {
-	background: #4CAF50;
-	color: white;
+	background: var(--primary-yellow);
+	color: #000;
 	font-weight: 800;
 	font-size: 0.9rem;
 	padding: 0.2rem 0.6rem;
@@ -1609,9 +1610,9 @@ footer {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.4rem;
-	background: #E8F5E9;
-	color: #2E7D32;
-	border: 1px solid #2E7D32;
+	background: var(--primary-yellow);
+	color: #000;
+	border: 1px solid #000;
 	padding: 0.3rem 0.7rem;
 	font-size: 0.8rem;
 	font-weight: 700;
@@ -1622,7 +1623,7 @@ footer {
 }
 
 .event-sub-badge:hover {
-	background: #C8E6C9;
+	background: #fff;
 }
 
 .event-card-footer {
@@ -2051,9 +2052,9 @@ video:not([data-popup="false"]):not([data-popup="no"]):not([data-popup="off"]):n
 }
 
 .interest-tag {
-	background: #E8F5E9;
-	color: #2E7D32;
-	border: 1px solid #2E7D32;
+	background: var(--primary-yellow);
+	color: #000;
+	border: 1px solid #000;
 	padding: 0.4rem 1rem;
 	border-radius: 20px;
 	font-size: 0.85rem;
@@ -2081,5 +2082,6 @@ video:not([data-popup="false"]):not([data-popup="no"]):not([data-popup="off"]):n
 
 .social-links a:hover {
 	transform: translateY(-3px);
-	background: #4CAF50;
+	background: var(--primary-yellow);
+	color: #000;
 }
