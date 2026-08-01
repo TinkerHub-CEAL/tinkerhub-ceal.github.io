@@ -53,6 +53,91 @@
 				"instagram": "https://www.instagram.com/loup_roi_",
 				"email": "mailto:adithyantnair2005@gmail.com"
 			}
+		},
+		"ancy": {
+			"name": "Ancy Byju",
+			"position": "Volunteer",
+			"image": "ancy.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/ancy-byju-24aa0932b",
+				"instagram": "https://www.instagram.com/_an.cy____?igsh=YmJtM3NuOGxyeWdp",
+				"email": "mailto:ancybyju42@gmail.com"
+			}
+		},
+		"asmiya": {
+			"name": "Asmiya H",
+			"position": "Volunteer",
+			"image": "asmiya.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/asmiya-hassain-bb358537a",
+				"github": "https://github.com/Asmiyasmi",
+				"instagram": "https://www.instagram.com/__azmi_ya__?igsh=MWkxM2phajJ1aXZ5bg%3D%3D&utm_source=qr",
+				"email": "mailto:asmiyahassain123@gmail.com"
+			}
+		},
+		"ayisha": {
+			"name": "Ayisha Beevi A S",
+			"position": "Volunteer",
+			"image": "ayisha.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/ayisha-beevi-a-s-75233734b?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+				"github": "https://github.com/ishabeevi",
+				"email": "mailto:ayishabeevi437@gmail.com"
+			}
+		},
+		"minnah": {
+			"name": "Minnah Pattar Kadavan",
+			"position": "Volunteer",
+			"image": "minnah.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/minnah-ameenullah/",
+				"github": "https://github.com/minnahdev",
+				"instagram": "https://www.instagram.com/minnahameenullah",
+				"email": "mailto:minnahameenullah@gmail.com"
+			}
+		},
+		"nandhu": {
+			"name": "Nandhu B M",
+			"position": "Volunteer",
+			"image": "nandhu.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/nandhu-bhasi?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+				"github": "https://github.com/nandhuexplore",
+				"instagram": "https://www.instagram.com/nandhubhasi_?igsh=MXZ6cjIyaXdrcTZuYw==",
+				"email": "mailto:nandhubhasi06@gmail.com"
+			}
+		},
+		"navaneeth": {
+			"name": "Navaneeth Krishna A",
+			"position": "Volunteer",
+			"image": "navaneeth.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/navaneethkrishnaa?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+				"github": "https://github.com/navaneethkrishna259",
+				"instagram": "https://www.instagram.com/itsnavaneeth.__?igsh=MXA4YTNsbWtqangycA==",
+				"email": "mailto:navaneethkrishna259@gmail.com"
+			}
+		},
+		"reema": {
+			"name": "Reema Rinu",
+			"position": "Volunteer",
+			"image": "reema.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/reema-rinu-71074b37b?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+				"instagram": "https://www.instagram.com/reem_zzz____?igsh=N2o2bGwyeWxnZmZ4&utm_source=qr",
+				"email": "mailto:reemarinu.fr@gmail.com"
+			}
+		},
+		"sreelekshmi": {
+			"name": "Sreelekshmi.S",
+			"position": "Volunteer",
+			"image": "sreelekshmi.png",
+			"socials": {
+				"linkedin": "https://www.linkedin.com/in/sree-lekshmi-s-b3958737a",
+				"github": "https://github.com/Sreelekshmi-S-tech",
+				"instagram": "https://www.instagram.com/srilaxmiii__?igsh=MWIwY3YyMXQ1cG9naA==",
+				"email": "mailto:sreelekshmis549@gmail.com"
+			}
 		}
 	}
 }
