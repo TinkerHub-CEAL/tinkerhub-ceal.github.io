@@ -4,6 +4,14 @@
 			"name": "Lekshmy S Raju",
 			"position": "Campus Lead",
 			"image": "lekshmy.png",
+			"quote": "Bloom at your own pace…",
+			"interests": [
+				"Web Development",
+				"Python",
+				"Video editing",
+				"Designing",
+				"Art"
+			],
 			"socials": {
 				"linkedin": "https://www.linkedin.com/in/lekshmy-s-raju-978a67345",
 				"github": "https://github.com/Lekshmy-sr",
@@ -25,6 +33,11 @@
 			"name": "Aromal A S",
 			"position": "Learning Coordinator",
 			"image": "aromal.png",
+			"interests": [
+				"backend development and System design",
+				"Game Development",
+				"low level porgamming languages"
+			],
 			"socials": {
 				"github": "https://github.com/zyndor1548",
 				"linkedin": "https://www.linkedin.com/in/aromal1548",
@@ -47,6 +60,14 @@
 			"name": "Adithyan T Nair",
 			"position": "Outreach",
 			"image": "adithyan.png",
+			"quote": "Things will work out",
+			"interests": [
+				"Generative AI",
+				"Agentic AI",
+				"Design",
+				"Team collaboration",
+				"Community Building"
+			],
 			"socials": {
 				"linkedin": "https://www.linkedin.com/in/adithyan-t-nair",
 				"github": "https://github.com/Adithyan-T-Nair",
@@ -68,6 +89,14 @@
 			"name": "Asmiya H",
 			"position": "Volunteer",
 			"image": "asmiya.png",
+			"quote": "Small steps, Big impact",
+			"interests": [
+				"Content creation",
+				"Digital marketing",
+				"Cybersecurity,programming",
+				"Designing",
+				"Editing"
+			],
 			"socials": {
 				"linkedin": "https://www.linkedin.com/in/asmiya-hassain-bb358537a",
 				"github": "https://github.com/Asmiyasmi",
@@ -79,6 +108,11 @@
 			"name": "Ayisha Beevi A S",
 			"position": "Volunteer",
 			"image": "ayisha.png",
+			"interests": [
+				"Media",
+				"Designing",
+				"Programming"
+			],
 			"socials": {
 				"linkedin": "https://www.linkedin.com/in/ayisha-beevi-a-s-75233734b?utm_source=share_via&utm_content=profile&utm_medium=member_android",
 				"github": "https://github.com/ishabeevi",
@@ -89,6 +123,13 @@
 			"name": "Minnah Pattar Kadavan",
 			"position": "Volunteer",
 			"image": "minnah.png",
+			"quote": "It's all about mindset.",
+			"interests": [
+				"Technology & Engineering",
+				"Entrepreneurship & Innovation",
+				"Leadership & Community",
+				"Teaching & Learning"
+			],
 			"socials": {
 				"linkedin": "https://www.linkedin.com/in/minnah-ameenullah/",
 				"github": "https://github.com/minnahdev",
@@ -111,6 +152,18 @@
 			"name": "Navaneeth Krishna A",
 			"position": "Volunteer",
 			"image": "navaneeth.png",
+			"quote": "Risk is better than regret ",
+			"interests": [
+				"Designing",
+				"video editing",
+				"cinematography",
+				"Digital marketing",
+				"Python",
+				"Machine learning",
+				"Java",
+				"App development",
+				"Aerospace"
+			],
 			"socials": {
 				"linkedin": "https://www.linkedin.com/in/navaneethkrishnaa?utm_source=share_via&utm_content=profile&utm_medium=member_android",
 				"github": "https://github.com/navaneethkrishna259",
@@ -122,6 +175,14 @@
 			"name": "Reema Rinu",
 			"position": "Volunteer",
 			"image": "reema.png",
+			"quote": "Bet on yourself",
+			"interests": [
+				"Media",
+				"Designing",
+				"Communication",
+				"Videography",
+				"Performing"
+			],
 			"socials": {
 				"linkedin": "https://www.linkedin.com/in/reema-rinu-71074b37b?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
 				"instagram": "https://www.instagram.com/reem_zzz____?igsh=N2o2bGwyeWxnZmZ4&utm_source=qr",
@@ -132,6 +193,13 @@
 			"name": "Sreelekshmi.S",
 			"position": "Volunteer",
 			"image": "sreelekshmi.png",
+			"quote": "Dream big. Learn fast. Build together",
+			"interests": [
+				"programming",
+				"python",
+				"web development",
+				"event management"
+			],
 			"socials": {
 				"linkedin": "https://www.linkedin.com/in/sree-lekshmi-s-b3958737a",
 				"github": "https://github.com/Sreelekshmi-S-tech",

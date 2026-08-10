@@ -42,9 +42,22 @@
 		"image": "6.png"
 	},
 	{
-		"name": "Chaya and puffs",
-		"date": "july 29, 2026",
-		"time": "02:30 PM",
-		"description": "TinkerHub Ceal Orientation"
+		"name": "kulfi",
+		"date": "August 06, 2026",
+		"time": "03:50 PM",
+		"description": "TinkerHub Ceal Orientation",
+		"image": "5.jpeg"
+	},
+	{
+		"name": "Useless Project 3.0",
+		"date": "September 05, 2026",
+		"time": "09:00 AM",
+		"description": "A fun, creative hackathon encouraging participants to build absurd and hilarious tech projects."
+	},
+	{
+		"name": "Code A Pookalam",
+		"date": "August 19, 2026",
+		"time": "08:00 PM",
+		"description": "Do you want to make a pookalam but dont have flowers with you,  make one with code"
 	}
 ]
