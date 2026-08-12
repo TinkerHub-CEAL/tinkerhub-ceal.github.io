@@ -509,7 +509,7 @@ function renderTeam() {
 		return `
 			<div class="team-member-card" data-delay="${index * 80}" onclick="window.location.href='${basePrefix}profile/#${memberId}'">
 				<div class="member-photo-container">
-					<img src="${basePrefix}static/images/core_team/${member.image}" alt="${member.name}" class="member-photo" onerror="this.src='${basePrefix}static/images/team.jpeg';">
+					<img src="${basePrefix}static/images/core_team/${member.image}" alt="${member.name}" class="member-photo" onerror="this.src='${basePrefix}static/images/team2026.png';">
 				</div>
 				<div class="member-info">
 					<h3 class="member-name">${member.name}</h3>
@@ -848,7 +848,7 @@ async function initProfilePage() {
 		const imgPath = `../static/images/core_team/${member.image}`;
 		const imgEl = document.getElementById('profile-image');
 		imgEl.src = imgPath;
-		imgEl.onerror = () => { imgEl.src = '../static/images/team.jpeg'; };
+		imgEl.onerror = () => { imgEl.src = '../static/images/team2026.png'; };
 
 		document.getElementById('profile-name').innerText = member.name;
 		document.getElementById('profile-position').innerText = member.position;

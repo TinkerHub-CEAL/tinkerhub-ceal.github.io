@@ -17,6 +17,10 @@
 	},
 	{
 		"type": "image",
+		"src": "static/images/team26.png"
+	},
+	{
+		"type": "image",
 		"src": "static/images/team.jpeg"
 	},
 	{
