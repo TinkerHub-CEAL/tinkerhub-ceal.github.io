@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://tinkerhub.ceal.in/sitemap.xml
+# LLM Context: https://tinkerhub.ceal.in/llms.txt
+

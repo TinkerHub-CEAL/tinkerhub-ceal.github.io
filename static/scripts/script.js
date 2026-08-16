@@ -243,10 +243,6 @@ async function loadEvents() {
 	await loadEventsData();
 }
 
-async function loadHighlights() {
-	// Handled by loadEventsData
-}
-
 // --- Highlights Carousel ---
 function renderHighlights() {
 	const highlightsContainer = document.getElementById('highlightsContainer');
@@ -354,7 +350,7 @@ function initVideoSlider() {
 				slide.classList.add('active');
 				if (video) {
 					video.currentTime = 0;
-					video.play().catch(err => console.log('Autoplay blocked:', err));
+					video.play().catch(() => {});
 				}
 			} else {
 				slide.classList.remove('active');
@@ -401,7 +397,7 @@ function renderHeroGallery() {
 		} else {
 			return `
 				<div class="gallery-card">
-					<img src="${srcPath}" alt="Gallery Image" class="placeholder-image">
+					<img src="${srcPath}" alt="Gallery Image" class="gallery-image">
 				</div>
 			`;
 		}
@@ -449,7 +445,6 @@ async function loadHeroGallery() {
 document.addEventListener('DOMContentLoaded', () => {
 	updateCopyright();
 	loadEvents();
-	loadHighlights();
 	initVideoSlider();
 	loadHeroGallery();
 	initMediaPopupSystem();
@@ -813,7 +808,6 @@ async function initProfilePage() {
 	});
 
 	const loadingEl = document.getElementById('loading');
-	const errorEl = document.getElementById('error');
 	const cardEl = document.getElementById('profile-card');
 
 	if (!urlYear || !memberId) {
@@ -834,7 +828,6 @@ async function initProfilePage() {
 
 		renderProfile(yearData[memberId], urlYear);
 	} catch (err) {
-		console.error(err);
 		showError();
 	}
 
