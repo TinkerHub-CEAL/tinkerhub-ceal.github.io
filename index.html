@@ -17,38 +17,23 @@
 	<!-- Ionicons -->
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+	<!-- Preload Component and Assets -->
+	<link rel="preload" href="./static/components/navbar.html" as="fetch" crossorigin>
+	<link rel="preload" href="./static/images/logo.png" as="image">
 	<script src="./static/scripts/script.js" defer></script>
 </head>
 
 <body>
 
 	<!-- Navbar -->
-	<nav class="navbar">
-		<div class="nav-container">
-			<div class="brand">
-				TinkerHub<br>CEAL
-			</div>
-			<button class="hamburger" id="hamburger" aria-label="Toggle menu">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
-			<div class="nav-links" id="navLinks">
-				<a href="./">Home</a>
-				<a href="./events/">Events</a>
-				<a href="#highlights">Highlight</a>
-				<a href="./team/">Our Team</a>
-				<a href="./about/">About</a>
-			</div>
-		</div>
-	</nav>
+	<div id="navbar"></div>
 
 	<!-- Hero Section -->
 	<section class="hero container">
 		<div class="hero-grid">
 			<div class="hero-text">
 				<div class="sticker">PROJECTS</div>
-				<h1>Learn, Build, Share</h1>
+				<h1>Learn . Build . Share</h1>
 				<p>Change is inevitable, but progress is a choice. We're here to ensure students choose innovation,
 					growth, and impact.</p>
 				<br>
@@ -57,7 +42,15 @@
 			</div>
 
 			<!-- Right side Grid -->
-			<div class="hero-gallery" id="heroGallery">
+			<div class="hero-gallery-container">
+				<div class="hero-gallery" id="heroGallery">
+				</div>
+				<div class="hero-gallery-footer">
+					<a href="./gallery/" class="show-gallery-btn">
+						<ion-icon name="images-outline"></ion-icon> Show Gallery <ion-icon
+							name="arrow-forward-outline"></ion-icon>
+					</a>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -149,50 +142,7 @@
 	</section>
 
 	<!-- Footer -->
-	<footer>
-		<div class="ticker-wrap">
-			<div class="ticker">
-				TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp;
-				TinkerHub Ceal
-				&nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp;
-				TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp;
-				TinkerHub Ceal
-				&nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp; TinkerHub Ceal &nbsp;&bull;&nbsp;
-			</div>
-		</div>
-
-		<div class="footer-content">
-			<h2>Join the Movement</h2>
-			<div
-				style="display: inline-block; background: #333; color: #FDD835; padding: 0.8rem 2rem; border-radius: 50px; margin-bottom: 3rem; font-weight: 600;">
-				<a href="https://www.tinkerhub.org" target="_blank" rel="noopener noreferrer">TinkerHub.org</a>
-			</div>
-
-			<div class="stats-container">
-				<div class="stat-circle">
-					<span class="stat-number">200+</span>
-					<span class="stat-label">community<br>members</span>
-				</div>
-				<div class="stat-circle" style="background: #E8D5B5;">
-					<span class="stat-number">40+</span>
-					<span class="stat-label">events</span>
-				</div>
-				<div class="stat-circle" style="background: #F0E0C0;">
-					<span class="stat-number">70+</span>
-					<span class="stat-label">projects</span>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Community Banner Section -->
-	<section class="image-banner-section container">
-		<div class="banner-image-container">
-			<img src="./static/images/team2026.png" alt="Community Image" class="banner-image">
-		</div>
-	</section>
-	<div class="footer-bottom">
-		By <a href="https://github.com/zyndor1548" target="_blank">zyndor1548</a> &copy; 2026. All Rights Reserved.
-	</div>
+	<div id="footer"></div>
 
 
 

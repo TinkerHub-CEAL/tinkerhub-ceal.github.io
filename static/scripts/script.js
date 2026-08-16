@@ -11,7 +11,8 @@ function getBasePrefix() {
 	const isSubdir = window.location.pathname.includes('/about') ||
 		window.location.pathname.includes('/team') ||
 		window.location.pathname.includes('/link') ||
-		window.location.pathname.includes('/events');
+		window.location.pathname.includes('/events') ||
+		window.location.pathname.includes('/gallery');
 	return isSubdir ? '../' : './';
 }
 
@@ -350,7 +351,7 @@ function initVideoSlider() {
 				slide.classList.add('active');
 				if (video) {
 					video.currentTime = 0;
-					video.play().catch(() => {});
+					video.play().catch(() => { });
 				}
 			} else {
 				slide.classList.remove('active');
@@ -381,9 +382,8 @@ let galleryItems = [];
 function renderHeroGallery() {
 	const heroGalleryContainer = document.getElementById('heroGallery');
 	if (!heroGalleryContainer) return;
-
-	// Render items from json
-	let cardsHtml = galleryItems.map(item => {
+	const itemsToShow = galleryItems.slice(0, 6);
+	let cardsHtml = itemsToShow.map(item => {
 		const srcPath = item.src.startsWith('static/') ? (basePrefix + item.src) : item.src;
 		if (item.type === 'video') {
 			return `
@@ -442,7 +442,164 @@ async function loadHeroGallery() {
 	}
 }
 
+// Initiate component fetches immediately in parallel with DOM parsing
+const navbarFetchPromise = fetch(basePrefix + 'static/components/navbar.html').then(res => res.ok ? res.text() : '').catch(err => '');
+const footerFetchPromise = fetch(basePrefix + 'static/components/footer.html').then(res => res.ok ? res.text() : '').catch(err => '');
+
+async function loadComponents() {
+	const navbarPlaceholder = document.getElementById('navbar');
+	const footerPlaceholder = document.getElementById('footer');
+
+	if (navbarPlaceholder) {
+		try {
+			const html = await navbarFetchPromise;
+			if (html) {
+				navbarPlaceholder.innerHTML = html;
+				setupNavbar();
+			}
+		} catch (err) {
+			console.error('Error loading navbar component:', err);
+		}
+	}
+
+	if (footerPlaceholder) {
+		try {
+			const html = await footerFetchPromise;
+			if (html) {
+				footerPlaceholder.innerHTML = html;
+				setupFooter();
+				updateCopyright();
+			}
+		} catch (err) {
+			console.error('Error loading footer component:', err);
+		}
+	}
+}
+
+function setupFooter() {
+	const footerContent = document.getElementById('footerContent');
+	const footerExtra = document.getElementById('footerExtra');
+
+	const path = window.location.pathname.toLowerCase();
+	const isHome = path === '/' || path.endsWith('/index.html') || path.endsWith('/ceal') || path.endsWith('/ceal/') || path === '' || (basePrefix === './' && !path.includes('/about') && !path.includes('/events') && !path.includes('/team') && !path.includes('/gallery') && !path.includes('/profile') && !path.includes('/404'));
+
+	if (isHome) {
+		if (footerContent && !footerContent.querySelector('.stats-container')) {
+			const statsDiv = document.createElement('div');
+			statsDiv.className = 'stats-container';
+			statsDiv.innerHTML = `
+				<div class="stat-circle">
+					<span class="stat-number">350+</span>
+					<span class="stat-label">community<br>members</span>
+				</div>
+				<div class="stat-circle" style="background: #E8D5B5;">
+					<span class="stat-number">40+</span>
+					<span class="stat-label">events</span>
+				</div>
+				<div class="stat-circle" style="background: #F0E0C0;">
+					<span class="stat-number">70+</span>
+					<span class="stat-label">projects</span>
+				</div>
+			`;
+			footerContent.appendChild(statsDiv);
+		}
+
+		if (footerExtra && !footerExtra.querySelector('.image-banner-section')) {
+			footerExtra.innerHTML = `
+				<section class="image-banner-section container">
+					<div class="banner-image-container">
+						<img src="${basePrefix}static/images/team2026.png" alt="Community Image" class="banner-image">
+					</div>
+				</section>
+			`;
+		}
+	}
+
+	if (typeof setupObservers === 'function') {
+		setTimeout(setupObservers, 50);
+	}
+}
+
+function setupNavbar() {
+	const navbar = document.querySelector('.navbar');
+	if (navbar) {
+		// Update relative links based on current page basePrefix
+		navbar.querySelectorAll('a').forEach(link => {
+			const href = link.getAttribute('href');
+			if (href && href.startsWith('./')) {
+				link.setAttribute('href', basePrefix + href.substring(2));
+			}
+		});
+
+		// Update relative image sources based on current page basePrefix
+		navbar.querySelectorAll('img').forEach(img => {
+			const src = img.getAttribute('src');
+			if (src && src.startsWith('./')) {
+				img.setAttribute('src', basePrefix + src.substring(2));
+			}
+		});
+
+		// Prevent hard reloads when clicking brand logo or home link while already on home page
+		const path = window.location.pathname.toLowerCase();
+		const isHome = path === '/' || path.endsWith('/index.html') || path.endsWith('/ceal') || path.endsWith('/ceal/') || path === '' || (basePrefix === './' && !path.includes('/about') && !path.includes('/events') && !path.includes('/team') && !path.includes('/gallery') && !path.includes('/profile') && !path.includes('/404'));
+
+		navbar.querySelectorAll('.brand, a[data-nav="home"]').forEach(homeLink => {
+			homeLink.addEventListener('click', (e) => {
+				if (isHome) {
+					e.preventDefault();
+					window.scrollTo({ top: 0, behavior: 'smooth' });
+				}
+			});
+		});
+	}
+
+	const navLinks = document.getElementById('navLinks');
+	if (navLinks) {
+
+		// Highlight active navigation link
+		const path = window.location.pathname.toLowerCase();
+		let activeNav = '';
+		if (path.includes('/gallery')) activeNav = 'gallery';
+		else if (path.includes('/events')) activeNav = 'events';
+		else if (path.includes('/team')) activeNav = 'team';
+		else if (path.includes('/about')) activeNav = 'about';
+
+		navLinks.querySelectorAll('a').forEach(link => {
+			const navKey = link.getAttribute('data-nav');
+			if (navKey && navKey === activeNav) {
+				link.classList.add('active');
+			} else {
+				link.classList.remove('active');
+			}
+		});
+	}
+
+	// Hamburger Menu Toggle
+	const hamburger = document.getElementById('hamburger');
+	if (hamburger && navLinks) {
+		hamburger.addEventListener('click', () => {
+			hamburger.classList.toggle('active');
+			navLinks.classList.toggle('active');
+		});
+
+		navLinks.querySelectorAll('a').forEach(link => {
+			link.addEventListener('click', () => {
+				hamburger.classList.remove('active');
+				navLinks.classList.remove('active');
+			});
+		});
+
+		document.addEventListener('click', (e) => {
+			if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+				hamburger.classList.remove('active');
+				navLinks.classList.remove('active');
+			}
+		});
+	}
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+	loadComponents();
 	updateCopyright();
 	loadEvents();
 	initVideoSlider();
@@ -456,33 +613,113 @@ document.addEventListener('DOMContentLoaded', () => {
 		initProfilePage();
 	}
 
-	// Hamburger Menu Toggle
-	const hamburger = document.getElementById('hamburger');
-	const navLinks = document.getElementById('navLinks');
-
-	if (hamburger && navLinks) {
-		hamburger.addEventListener('click', () => {
-			hamburger.classList.toggle('active');
-			navLinks.classList.toggle('active');
-		});
-
-		// Close menu when clicking on a link
-		navLinks.querySelectorAll('a').forEach(link => {
-			link.addEventListener('click', () => {
-				hamburger.classList.remove('active');
-				navLinks.classList.remove('active');
-			});
-		});
-
-		// Close menu when clicking outside
-		document.addEventListener('click', (e) => {
-			if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-				hamburger.classList.remove('active');
-				navLinks.classList.remove('active');
-			}
-		});
+	if (document.getElementById('allGalleryGrid')) {
+		initGalleryPage();
 	}
 });
+
+// =========================================
+// GALLERY PAGE FUNCTIONALITY
+// =========================================
+
+async function initGalleryPage() {
+	const allGalleryGrid = document.getElementById('allGalleryGrid');
+	if (!allGalleryGrid) return;
+
+	let allMediaItems = [];
+	const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+
+	try {
+		const response = await fetch(basePrefix + 'static/json/gallery.json');
+		if (!response.ok) throw new Error('Failed to fetch gallery data');
+		allMediaItems = await response.json();
+	} catch (err) {
+		console.error('Error loading gallery page data:', err);
+		allGalleryGrid.innerHTML = `
+			<div style="grid-column: 1/-1; text-align: center; padding: 3rem; background: white; border: 2px dashed #000; border-radius: 12px;">
+				<h3 style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; margin-bottom: 0.5rem;">Unable to load gallery</h3>
+				<p style="color: #666;">Please check back later or refresh the page.</p>
+			</div>
+		`;
+		return;
+	}
+
+	function filterAndRenderGallery(filterType) {
+		filterBtns.forEach(btn => {
+			if (btn.getAttribute('data-filter') === filterType) {
+				btn.classList.add('active');
+			} else {
+				btn.classList.remove('active');
+			}
+		});
+
+		let filtered = allMediaItems;
+		if (filterType === 'IMAGES') {
+			filtered = allMediaItems.filter(item => item.type === 'image');
+		} else if (filterType === 'VIDEOS') {
+			filtered = allMediaItems.filter(item => item.type === 'video');
+		}
+
+		renderGalleryPageCards(filtered);
+	}
+
+	filterBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			const type = btn.getAttribute('data-filter');
+			filterAndRenderGallery(type);
+		});
+	});
+
+	filterAndRenderGallery('ALL');
+}
+
+function renderGalleryPageCards(items) {
+	const grid = document.getElementById('allGalleryGrid');
+	if (!grid) return;
+
+	if (!items || items.length === 0) {
+		grid.innerHTML = `
+			<div style="grid-column: 1/-1; text-align: center; padding: 3rem; background: white; border: 2px dashed #000; border-radius: 12px;">
+				<h3 style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; margin-bottom: 0.5rem;">No Media Found</h3>
+				<p style="color: #666;">There are no items matching this category.</p>
+			</div>
+		`;
+		return;
+	}
+
+	grid.innerHTML = items.map((item, index) => {
+		const srcPath = item.src.startsWith('static/') ? (basePrefix + item.src) : item.src;
+		const title = item.title || (item.type === 'video' ? 'Gallery Video' : 'Gallery Image');
+		const isVid = item.type === 'video';
+
+		return `
+			<div class="gallery-card-item" data-delay="${index * 60}">
+				<div class="gallery-media-wrapper">
+					${isVid ? `
+						<video muted autoplay loop class="video-container" alt="${title}" title="${title}">
+							<source src="${srcPath}" type="video/mp4">
+							Your browser does not support video.
+						</video>
+					` : `
+						<img src="${srcPath}" alt="${title}" class="gallery-image">
+					`}
+				</div>
+				<div class="gallery-card-info">
+					<span class="gallery-card-title">${title}</span>
+					<span class="gallery-type-badge">${isVid ? 'Video' : 'Photo'}</span>
+				</div>
+			</div>
+		`;
+	}).join('');
+
+	setTimeout(() => {
+		document.querySelectorAll('.gallery-card-item').forEach((card, idx) => {
+			setTimeout(() => {
+				card.classList.add('is-visible');
+			}, idx * 60);
+		});
+	}, 100);
+}
 
 // =========================================
 // TEAM PAGE FUNCTIONALITY
@@ -753,9 +990,9 @@ function initMediaPopupSystem() {
 
 		if (!mediaEl) return;
 
-		// Check data-popup attribute on element or parent containers
+		// Check data-popup / nopopup / data-no-popup attribute on element or parent containers
 		const popupAttr = mediaEl.getAttribute('data-popup') || mediaEl.closest('[data-popup]')?.getAttribute('data-popup');
-		const noPopupAttr = mediaEl.hasAttribute('data-no-popup') || mediaEl.closest('[data-no-popup]');
+		const noPopupAttr = mediaEl.hasAttribute('data-no-popup') || mediaEl.closest('[data-no-popup]') || mediaEl.hasAttribute('nopopup') || mediaEl.closest('[nopopup]') || mediaEl.closest('.brand');
 
 		if (popupAttr === 'false' || popupAttr === 'no' || popupAttr === 'off' || noPopupAttr) {
 			return; // Do not trigger popup
@@ -783,6 +1020,7 @@ function initMediaPopupSystem() {
 			popupVid.src = videoSrc;
 			popupVid.controls = true;
 			popupVid.autoplay = true;
+			popupVid.muted = true;
 			popupVid.className = 'tinker-media-popup-vid';
 			body.appendChild(popupVid);
 		}
