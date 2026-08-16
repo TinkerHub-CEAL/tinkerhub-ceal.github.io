@@ -1,0 +1,96 @@
+# TinkerHub CEAL
+
+> TinkerHub CEAL is a student-led community at College of Engineering Attingal (CEAL), dedicated to fostering a culture of peer-to-peer learning, technology exploration, and real-world project building.
+
+## Community Overview
+
+- **Organization**: TinkerHub CEAL (Campus Chapter of TinkerHub Foundation)
+- **Institution**: College of Engineering Attingal (CEAL), Kerala, India
+- **Motto**: Learn • Build • Share
+- **Mission**: Bridge the gap between academic education and industry standards by empowering students across all engineering and science disciplines to build innovative solutions, learn together, and share knowledge.
+- **Key Statistics**:
+  - 200+ Active Community Members
+  - 40+ Tech Events, Workshops & Hackathons organized
+  - 70+ Projects created by community members
+- **Website**: [https://tinkerhub.ceal.in](https://tinkerhub.ceal.in)
+- **Primary Technologies & Focus Areas**: Web Development, Artificial Intelligence & Machine Learning, Agentic AI, Backend & System Design, Game Development, Hardware & Maker Projects, Cybersecurity, UI/UX Design, Open Source Contribution.
+
+---
+
+## Site Map & Core Pages
+
+- [Home Page](https://tinkerhub.ceal.in/): Landing page featuring community motto, hero gallery, video highlights, upcoming event teasers, and impact metrics.
+- [About Us](https://tinkerhub.ceal.in/about/): Detailed background on TinkerHub CEAL, community mission, peer-to-peer learning philosophy, and goals.
+- [Events Catalog](https://tinkerhub.ceal.in/events/): Complete filterable catalog of upcoming and past community events, hackathons, and workshops.
+- [Our Team](https://tinkerhub.ceal.in/team/): Directory of the 2026 Core Leadership Team, Faculty Coordinators, and Volunteers.
+- [Member Profiles](https://tinkerhub.ceal.in/profile/): Dynamic member cards displaying quotes, fields of interest, skills, and personal social links (accessible via hash e.g., `https://tinkerhub.ceal.in/profile/#lekshmy`).
+- [Quick Links Hub](https://tinkerhub.ceal.in/link/): Linktree-style directory linking to all official social channels and community portals.
+
+---
+
+## Community Events & Hackathons
+
+### Upcoming & Featured Events
+- **Useless Project 3.0** (September 05, 2026 | 09:00 AM)
+  - *Description*: A fun, creative hackathon encouraging participants to build absurd and hilarious tech projects.
+- **Code A Pookalam** (August 19, 2026 | 08:00 PM)
+  - *Description*: Virtual festival event challenging participants to create digital Pookalam flower carpets purely using code.
+- **Kulfi** (August 06, 2026 | 03:50 PM)
+  - *Description*: Official TinkerHub CEAL orientation and welcome session for new community members.
+- **RBI Reelathon 2026: Orientation** (July 22, 2026 | 02:00 PM)
+  - *Description*: Orientation session conducted in partnership with RBI Trivandrum focusing on digital reel creation and cyber money fraud awareness.
+
+### Flagship & Past Highlights
+- **TinkHerHack 4.0** (February 20, 2026 | 09:00 AM)
+  - *Description*: All-women flagship hackathon promoting gender diversity, technical mentorship, and impactful software/hardware solutions.
+- **Project Building** (February 07, 2026 | 02:00 PM)
+  - *Description*: Interactive hands-on session focusing on MVP (Minimum Viable Product) development and project ideation.
+- **Craft & Learn** (August 19, 2025 | 11:00 AM)
+  - *Description*: Maker meetup where students experiment with hardware, design tools, and peer-to-peer skill sharing.
+- **Useless Project 2.0** (August 08, 2025 | 09:30 AM)
+  - *Description*: Iteration of the signature creative hackathon celebrating absurd and humorous technology projects.
+- **Pixel to Product** (July 28, 2025 | 10:00 AM)
+  - *Description*: Comprehensive UI/UX workshop bridging the gap between pixel-perfect UI design and product handoff.
+
+---
+
+## Team Roster (2026)
+
+### Leadership & Coordinators
+- **Lekshmy S Raju** — *Campus Lead*
+  - Quote: *"Bloom at your own pace…"*
+  - Interests: Web Development, Python, Video editing, Designing, Art
+  - Links: [LinkedIn](https://www.linkedin.com/in/lekshmy-s-raju-978a67345) | [GitHub](https://github.com/Lekshmy-sr) | [Instagram](https://www.instagram.com/lekshmy_s_r) | [Email](mailto:lekshmys33@gmail.com)
+- **Aromal A S** — *Learning Coordinator*
+  - Interests: Backend development & System design, Game Development, Low level programming languages
+  - Links: [GitHub](https://github.com/zyndor1548) | [LinkedIn](https://www.linkedin.com/in/aromal1548) | [Instagram](https://www.instagram.com/aromal1548) | [Email](mailto:a.s.aromal2006@gmail.com)
+- **Nadiya S** — *Women In Tech Lead*
+  - Links: [LinkedIn](https://www.linkedin.com/in/nadiya-s-1877b337a) | [GitHub](https://github.com/Nadiyashamnad) | [Instagram](https://www.instagram.com/__.nadi_ya.__) | [Email](mailto:nadiyashamnade@gmail.com)
+- **Adithyan T Nair** — *Outreach Lead*
+  - Quote: *"Things will work out"*
+  - Interests: Generative AI, Agentic AI, Design, Team collaboration, Community Building
+  - Links: [LinkedIn](https://www.linkedin.com/in/adithyan-t-nair) | [GitHub](https://github.com/Adithyan-T-Nair) | [Instagram](https://www.instagram.com/loup_roi_) | [Email](mailto:adithyantnair2005@gmail.com)
+
+
+## Community Links & Social Channels
+
+- [Official Website](https://tinkerhub.ceal.in)
+- [GitHub Organization](https://github.com/TinkerHub-CEAL)
+- [Instagram Channel](https://www.instagram.com/tinkerhubceal/)
+- [Discord Community](https://discord.gg/A83zFdy3t4)
+- [WhatsApp Channel](https://chat.whatsapp.com/DypbXndu8F2JaTkqwjT1HD)
+- [LinkedIn Page](https://www.linkedin.com/company/tinkerhub-ceal)
+- [Parent Organization (TinkerHub Foundation)](https://www.tinkerhub.org)
+
+---
+
+## Structured Data Endpoints (JSON)
+
+For automated systems and API clients, the following raw JSON feeds are available:
+
+- [Events Data Feed](https://tinkerhub.ceal.in/static/json/events.json): Raw list of all events, dates, descriptions, and media assets.
+- [Team Roster Data Feed](https://tinkerhub.ceal.in/static/json/team.json): Raw team structure grouped by year, positions, quotes, interests, and socials.
+- [Links Data Feed](https://tinkerhub.ceal.in/static/json/links.json): Raw social and platform links.
+- [Gallery Data Feed](https://tinkerhub.ceal.in/static/json/gallery.json): Hero gallery images and video media items.
+- [XML Sitemap](https://tinkerhub.ceal.in/sitemap.xml): Standard XML sitemap listing site URLs.
+- [Robots File](https://tinkerhub.ceal.in/robots.txt): Standard site crawler rules.
