@@ -873,13 +873,16 @@ function renderEventsPageCards(filteredList) {
 		const carouselId = `evt-carousel-${index}`;
 
 		const imageHtml = hasImages ? `
-			<div class="event-img-carousel" id="${carouselId}" data-index="0" style="width:100%; height:180px; border-radius:8px; overflow:hidden; margin-bottom:1rem; border:1px solid #000; position:relative;">
+			<div class="event-img-carousel" id="${carouselId}" data-index="0"
+			     data-images="${encodeURIComponent(JSON.stringify(imageList))}"
+			     data-title="${event.name.replace(/"/g, '&quot;')}"
+			     style="width:100%; height:180px; border-radius:8px; overflow:hidden; margin-bottom:1rem; border:1px solid #000; position:relative; cursor:pointer;">
 				${imageList.map((img, i) => `
-					<img src="${basePrefix}static/images/${img}" alt="${event.name}" class="evt-carousel-slide" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; opacity:${i === 0 ? 1 : 0}; transition:opacity 0.6s ease;" onerror="this.style.opacity=0;this.classList.add('evt-slide-error')">
+					<img src="${basePrefix}static/images/${img}" alt="${event.name}" class="evt-carousel-slide" data-no-popup style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; opacity:${i === 0 ? 1 : 0}; transition:opacity 0.6s ease; pointer-events:none;" onerror="this.style.opacity=0;this.classList.add('evt-slide-error')">
 				`).join('')}
 				${hasMultiple ? `
 					<div class="evt-carousel-dots" style="position:absolute; bottom:6px; left:50%; transform:translateX(-50%); display:flex; gap:5px; z-index:2;">
-						${imageList.map((_, i) => `<span class="evt-dot${i === 0 ? ' active' : ''}" data-i="${i}" style="width:7px; height:7px; border-radius:50%; background:${i === 0 ? '#fff' : 'rgba(255,255,255,0.45)'}; cursor:pointer; display:inline-block; transition:background 0.3s;"></span>`).join('')}
+						${imageList.map((_, i) => `<span class="evt-dot${i === 0 ? ' active' : ''}" data-i="${i}" style="width:7px; height:7px; border-radius:50%; background:${i === 0 ? '#fff' : 'rgba(255,255,255,0.45)'}; display:inline-block; transition:background 0.3s;"></span>`).join('')}
 					</div>
 				` : ''}
 			</div>
@@ -928,26 +931,26 @@ function initEventCardCarousels() {
 	document.querySelectorAll('.event-img-carousel').forEach(carousel => {
 		const slides = carousel.querySelectorAll('.evt-carousel-slide');
 		const dots = carousel.querySelectorAll('.evt-dot');
-		if (slides.length <= 1) return;
-
 		let currentIdx = 0;
 		let intervalId = null;
 
 		function goTo(idx) {
-			slides[currentIdx].style.opacity = 0;
+			if (slides[currentIdx]) slides[currentIdx].style.opacity = 0;
 			if (dots[currentIdx]) dots[currentIdx].style.background = 'rgba(255,255,255,0.45)';
 			currentIdx = (idx + slides.length) % slides.length;
-			// Skip slides whose images failed to load
+			// Skip failed images
 			let attempts = 0;
-			while (slides[currentIdx].classList.contains('evt-slide-error') && attempts < slides.length) {
+			while (slides[currentIdx]?.classList.contains('evt-slide-error') && attempts < slides.length) {
 				currentIdx = (currentIdx + 1) % slides.length;
 				attempts++;
 			}
-			slides[currentIdx].style.opacity = 1;
+			if (slides[currentIdx]) slides[currentIdx].style.opacity = 1;
 			if (dots[currentIdx]) dots[currentIdx].style.background = '#fff';
+			carousel.dataset.index = currentIdx;
 		}
 
 		function startSlideshow() {
+			if (slides.length <= 1) return;
 			stopSlideshow();
 			intervalId = setInterval(() => goTo(currentIdx + 1), 3000);
 		}
@@ -956,21 +959,144 @@ function initEventCardCarousels() {
 			if (intervalId) { clearInterval(intervalId); intervalId = null; }
 		}
 
-		// Dot click navigation
+		// Dot clicks — stop propagation so carousel click doesn't also fire
 		dots.forEach((dot, i) => {
 			dot.addEventListener('click', (e) => {
-				e.stopPropagation(); // prevent media popup
+				e.stopPropagation();
 				goTo(i);
-				startSlideshow(); // restart timer after manual nav
+				startSlideshow();
 			});
 		});
 
-		// Pause on hover, resume on leave
+		// Click carousel → open gallery popup at the current slide
+		carousel.addEventListener('click', () => {
+			const imagesJson = carousel.dataset.images;
+			const title = carousel.dataset.title || '';
+			if (!imagesJson) return;
+			try {
+				const imageList = JSON.parse(decodeURIComponent(imagesJson));
+				openEventGalleryPopup(imageList, parseInt(carousel.dataset.index || '0'), title);
+			} catch (e) { console.error('Gallery parse error', e); }
+		});
+
+		// Pause slideshow on hover, resume on leave
 		carousel.addEventListener('mouseenter', stopSlideshow);
 		carousel.addEventListener('mouseleave', startSlideshow);
 
 		startSlideshow();
 	});
+}
+
+// --- Multi-image lightbox for event gallery ---
+function openEventGalleryPopup(imageList, startIndex, title) {
+	let popupEl = document.getElementById('evtGalleryPopup');
+	if (!popupEl) {
+		popupEl = document.createElement('div');
+		popupEl.id = 'evtGalleryPopup';
+		popupEl.style.cssText = [
+			'position:fixed', 'inset:0', 'z-index:99999',
+			'background:rgba(0,0,0,0.92)',
+			'display:flex', 'flex-direction:column',
+			'align-items:center', 'justify-content:center',
+			'opacity:0', 'transition:opacity 0.25s ease'
+		].join(';');
+		popupEl.innerHTML = `
+			<div id="evtGalleryHeader" style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(to bottom,rgba(0,0,0,0.7),transparent);">
+				<span id="evtGalleryTitle" style="color:#fff;font-weight:700;font-size:1rem;letter-spacing:0.03em;text-shadow:0 1px 4px rgba(0,0,0,0.6);"></span>
+				<div style="display:flex;align-items:center;gap:14px;">
+					<span id="evtGalleryCounter" style="color:rgba(255,255,255,0.75);font-size:0.85rem;font-weight:600;"></span>
+					<button id="evtGalleryClose" aria-label="Close" style="background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:1.5rem;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:background 0.2s;">&times;</button>
+				</div>
+			</div>
+			<img id="evtGalleryImg" style="max-width:92vw;max-height:82vh;object-fit:contain;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,0.6);transition:opacity 0.25s ease;" alt="">
+			<button id="evtGalleryPrev" aria-label="Previous" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:1.8rem;width:48px;height:48px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;">&#8249;</button>
+			<button id="evtGalleryNext" aria-label="Next" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:1.8rem;width:48px;height:48px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;">&#8250;</button>
+			<div id="evtGalleryDots" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;"></div>
+		`;
+		document.body.appendChild(popupEl);
+
+		// Close on backdrop click
+		popupEl.addEventListener('click', (e) => {
+			if (e.target === popupEl) closeEvtGallery();
+		});
+		document.getElementById('evtGalleryClose').addEventListener('click', closeEvtGallery);
+		document.getElementById('evtGalleryClose').addEventListener('mouseenter', function() { this.style.background = 'rgba(255,255,255,0.25)'; });
+		document.getElementById('evtGalleryClose').addEventListener('mouseleave', function() { this.style.background = 'rgba(255,255,255,0.12)'; });
+
+		document.getElementById('evtGalleryPrev').addEventListener('click', () => navigateEvtGallery(-1));
+		document.getElementById('evtGalleryNext').addEventListener('click', () => navigateEvtGallery(1));
+		['evtGalleryPrev','evtGalleryNext'].forEach(id => {
+			const btn = document.getElementById(id);
+			btn.addEventListener('mouseenter', function() { this.style.background = 'rgba(255,255,255,0.28)'; });
+			btn.addEventListener('mouseleave', function() { this.style.background = 'rgba(255,255,255,0.12)'; });
+		});
+	}
+
+	// State stored on the element
+	popupEl._images = imageList;
+	popupEl._idx = Math.max(0, Math.min(startIndex, imageList.length - 1));
+
+	// Build dots
+	const dotsEl = document.getElementById('evtGalleryDots');
+	dotsEl.innerHTML = imageList.length > 1
+		? imageList.map((_, i) => `<span class="evtgdot" data-gi="${i}" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.35);display:inline-block;cursor:pointer;transition:background 0.2s;"></span>`).join('')
+		: '';
+	dotsEl.querySelectorAll('.evtgdot').forEach(dot => {
+		dot.addEventListener('click', () => { popupEl._idx = parseInt(dot.dataset.gi); renderEvtGallery(); });
+	});
+
+	const prevBtn = document.getElementById('evtGalleryPrev');
+	const nextBtn = document.getElementById('evtGalleryNext');
+	prevBtn.style.display = imageList.length > 1 ? 'flex' : 'none';
+	nextBtn.style.display = imageList.length > 1 ? 'flex' : 'none';
+
+	function renderEvtGallery() {
+		const img = document.getElementById('evtGalleryImg');
+		const counter = document.getElementById('evtGalleryCounter');
+		const titleEl = document.getElementById('evtGalleryTitle');
+		titleEl.textContent = title;
+		counter.textContent = imageList.length > 1 ? `${popupEl._idx + 1} / ${imageList.length}` : '';
+		img.style.opacity = 0;
+		img.onload = () => { img.style.opacity = 1; };
+		img.src = basePrefix + 'static/images/' + imageList[popupEl._idx];
+		img.alt = title;
+		// Update dots
+		dotsEl.querySelectorAll('.evtgdot').forEach((dot, i) => {
+			dot.style.background = i === popupEl._idx ? '#fff' : 'rgba(255,255,255,0.35)';
+		});
+	}
+
+	popupEl._render = renderEvtGallery;
+	renderEvtGallery();
+
+	// Show
+	document.body.style.overflow = 'hidden';
+	popupEl.style.display = 'flex';
+	requestAnimationFrame(() => { popupEl.style.opacity = 1; });
+
+	// Keyboard nav
+	popupEl._keyHandler = (e) => {
+		if (e.key === 'ArrowRight') navigateEvtGallery(1);
+		else if (e.key === 'ArrowLeft') navigateEvtGallery(-1);
+		else if (e.key === 'Escape') closeEvtGallery();
+	};
+	document.addEventListener('keydown', popupEl._keyHandler);
+}
+
+function navigateEvtGallery(dir) {
+	const popupEl = document.getElementById('evtGalleryPopup');
+	if (!popupEl || !popupEl._images) return;
+	popupEl._idx = (popupEl._idx + dir + popupEl._images.length) % popupEl._images.length;
+	popupEl._render();
+}
+
+function closeEvtGallery() {
+	const popupEl = document.getElementById('evtGalleryPopup');
+	if (!popupEl) return;
+	popupEl.style.opacity = 0;
+	setTimeout(() => { popupEl.style.display = 'none'; }, 250);
+	document.body.style.overflow = '';
+	if (popupEl._keyHandler) document.removeEventListener('keydown', popupEl._keyHandler);
 }
 
 window.openSubEventsModal = function (eventIndex) {
