@@ -858,11 +858,14 @@ function renderEventsPageCards(filteredList) {
 		const isPast = isPastEvent(event);
 		const hasSub = Array.isArray(event.subEvents) && event.subEvents.length > 0;
 
-		// Build image list: support both single `image` and `images[]` array
+		// Build image list: support both `image` (string OR array) and `images[]` array
 		let imageList = [];
 		if (Array.isArray(event.images) && event.images.length > 0) {
 			imageList = event.images;
-		} else if (event.image) {
+		} else if (Array.isArray(event.image) && event.image.length > 0) {
+			// Also handle `"image": [...]` (array written under the singular key)
+			imageList = event.image;
+		} else if (typeof event.image === 'string' && event.image) {
 			imageList = [event.image];
 		}
 		const hasImages = imageList.length > 0;
@@ -872,7 +875,7 @@ function renderEventsPageCards(filteredList) {
 		const imageHtml = hasImages ? `
 			<div class="event-img-carousel" id="${carouselId}" data-index="0" style="width:100%; height:180px; border-radius:8px; overflow:hidden; margin-bottom:1rem; border:1px solid #000; position:relative;">
 				${imageList.map((img, i) => `
-					<img src="${basePrefix}static/images/${img}" alt="${event.name}" class="evt-carousel-slide" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; opacity:${i === 0 ? 1 : 0}; transition:opacity 0.6s ease;" onerror="this.style.display='none'">
+					<img src="${basePrefix}static/images/${img}" alt="${event.name}" class="evt-carousel-slide" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; opacity:${i === 0 ? 1 : 0}; transition:opacity 0.6s ease;" onerror="this.style.opacity=0;this.classList.add('evt-slide-error')">
 				`).join('')}
 				${hasMultiple ? `
 					<div class="evt-carousel-dots" style="position:absolute; bottom:6px; left:50%; transform:translateX(-50%); display:flex; gap:5px; z-index:2;">
@@ -928,28 +931,45 @@ function initEventCardCarousels() {
 		if (slides.length <= 1) return;
 
 		let currentIdx = 0;
+		let intervalId = null;
 
 		function goTo(idx) {
 			slides[currentIdx].style.opacity = 0;
 			if (dots[currentIdx]) dots[currentIdx].style.background = 'rgba(255,255,255,0.45)';
 			currentIdx = (idx + slides.length) % slides.length;
+			// Skip slides whose images failed to load
+			let attempts = 0;
+			while (slides[currentIdx].classList.contains('evt-slide-error') && attempts < slides.length) {
+				currentIdx = (currentIdx + 1) % slides.length;
+				attempts++;
+			}
 			slides[currentIdx].style.opacity = 1;
 			if (dots[currentIdx]) dots[currentIdx].style.background = '#fff';
 		}
 
-		// Auto-advance every 3 seconds
-		const interval = setInterval(() => goTo(currentIdx + 1), 3000);
+		function startSlideshow() {
+			stopSlideshow();
+			intervalId = setInterval(() => goTo(currentIdx + 1), 3000);
+		}
+
+		function stopSlideshow() {
+			if (intervalId) { clearInterval(intervalId); intervalId = null; }
+		}
 
 		// Dot click navigation
 		dots.forEach((dot, i) => {
 			dot.addEventListener('click', (e) => {
 				e.stopPropagation(); // prevent media popup
 				goTo(i);
+				startSlideshow(); // restart timer after manual nav
 			});
 		});
 
-		// Pause on hover
-		carousel.addEventListener('mouseenter', () => clearInterval(interval));
+		// Pause on hover, resume on leave
+		carousel.addEventListener('mouseenter', stopSlideshow);
+		carousel.addEventListener('mouseleave', startSlideshow);
+
+		startSlideshow();
 	});
 }
 

@@ -81,7 +81,12 @@
 	},
 	{
 		"type": "image",
-		"src": "static/images/tinkerterra",
+		"src": "static/images/tinkerterra.png",
 		"title": "TinkerTerra"
+	},
+	{
+		"type": "image",
+		"src": "static/images/useless-projects-3.0.png",
+		"title": "Useless Project 3.0"
 	}
 ]
