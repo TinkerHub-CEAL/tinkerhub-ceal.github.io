@@ -254,7 +254,11 @@ function renderHighlights() {
 		return;
 	}
 
-	highlightsContainer.innerHTML = highlights.map((highlight, index) => `
+	highlightsContainer.innerHTML = highlights.map((highlight, index) => {
+		// Support both single `image` and `images[]` array
+		const firstImage = highlight.image ||
+			(Array.isArray(highlight.images) && highlight.images.length > 0 ? highlight.images[0] : null);
+		return `
 		<div class="highlight-photo-card" data-delay="${index * 100}">
 			<div class="highlight-card-header">
 				<div class="highlight-event-info">
@@ -264,10 +268,11 @@ function renderHighlights() {
 				<div class="highlight-star-marker">★</div>
 			</div>
 			<div class="highlight-image-box">
-				<img src="${basePrefix}static/images/${highlight.image}" alt="${highlight.name}" onerror="this.style.display='none'">
+				${firstImage ? `<img src="${basePrefix}static/images/${firstImage}" alt="${highlight.name}" onerror="this.style.display='none'">` : ''}
 			</div>
 		</div>
-	`).join('');
+		`;
+	}).join('');
 
 	setTimeout(() => {
 		document.querySelectorAll('.highlight-photo-card').forEach(card => {
@@ -852,6 +857,31 @@ function renderEventsPageCards(filteredList) {
 	eventsGrid.innerHTML = filteredList.map((event, index) => {
 		const isPast = isPastEvent(event);
 		const hasSub = Array.isArray(event.subEvents) && event.subEvents.length > 0;
+
+		// Build image list: support both single `image` and `images[]` array
+		let imageList = [];
+		if (Array.isArray(event.images) && event.images.length > 0) {
+			imageList = event.images;
+		} else if (event.image) {
+			imageList = [event.image];
+		}
+		const hasImages = imageList.length > 0;
+		const hasMultiple = imageList.length > 1;
+		const carouselId = `evt-carousel-${index}`;
+
+		const imageHtml = hasImages ? `
+			<div class="event-img-carousel" id="${carouselId}" data-index="0" style="width:100%; height:180px; border-radius:8px; overflow:hidden; margin-bottom:1rem; border:1px solid #000; position:relative;">
+				${imageList.map((img, i) => `
+					<img src="${basePrefix}static/images/${img}" alt="${event.name}" class="evt-carousel-slide" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; opacity:${i === 0 ? 1 : 0}; transition:opacity 0.6s ease;" onerror="this.style.display='none'">
+				`).join('')}
+				${hasMultiple ? `
+					<div class="evt-carousel-dots" style="position:absolute; bottom:6px; left:50%; transform:translateX(-50%); display:flex; gap:5px; z-index:2;">
+						${imageList.map((_, i) => `<span class="evt-dot${i === 0 ? ' active' : ''}" data-i="${i}" style="width:7px; height:7px; border-radius:50%; background:${i === 0 ? '#fff' : 'rgba(255,255,255,0.45)'}; cursor:pointer; display:inline-block; transition:background 0.3s;"></span>`).join('')}
+					</div>
+				` : ''}
+			</div>
+		` : '';
+
 		return `
 			<div class="event-card-item" data-delay="${index * 80}">
 				<div class="event-card-top">
@@ -868,11 +898,7 @@ function renderEventsPageCards(filteredList) {
 							</button>
 						</div>
 					` : ''}
-					${event.image ? `
-						<div style="width: 100%; height: 180px; border-radius: 8px; overflow: hidden; margin-bottom: 1rem; border: 1px solid #000;">
-							<img src="${basePrefix}static/images/${event.image}" alt="${event.name}" style="width:100%; height:100%; object-fit:cover;" onerror="this.parentElement.style.display='none'">
-						</div>
-					` : ''}
+					${imageHtml}
 					<div class="event-card-footer">
 						<span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: ${isPast ? '#777' : '#4CAF50'};">
 							${isPast ? '● Past Event' : '● Upcoming'}
@@ -890,7 +916,41 @@ function renderEventsPageCards(filteredList) {
 
 	setTimeout(() => {
 		document.querySelectorAll('.event-card-item').forEach(card => card.classList.add('is-visible'));
+		initEventCardCarousels();
 	}, 100);
+}
+
+// --- Auto-slideshow carousels for event cards with multiple images ---
+function initEventCardCarousels() {
+	document.querySelectorAll('.event-img-carousel').forEach(carousel => {
+		const slides = carousel.querySelectorAll('.evt-carousel-slide');
+		const dots = carousel.querySelectorAll('.evt-dot');
+		if (slides.length <= 1) return;
+
+		let currentIdx = 0;
+
+		function goTo(idx) {
+			slides[currentIdx].style.opacity = 0;
+			if (dots[currentIdx]) dots[currentIdx].style.background = 'rgba(255,255,255,0.45)';
+			currentIdx = (idx + slides.length) % slides.length;
+			slides[currentIdx].style.opacity = 1;
+			if (dots[currentIdx]) dots[currentIdx].style.background = '#fff';
+		}
+
+		// Auto-advance every 3 seconds
+		const interval = setInterval(() => goTo(currentIdx + 1), 3000);
+
+		// Dot click navigation
+		dots.forEach((dot, i) => {
+			dot.addEventListener('click', (e) => {
+				e.stopPropagation(); // prevent media popup
+				goTo(i);
+			});
+		});
+
+		// Pause on hover
+		carousel.addEventListener('mouseenter', () => clearInterval(interval));
+	});
 }
 
 window.openSubEventsModal = function (eventIndex) {

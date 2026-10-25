@@ -4,49 +4,49 @@
 		"date": "July 28, 2025",
 		"time": "10:00 AM",
 		"description": "A comprehensive UI/UX workshop bridging the gap between pixel design and final product handoff.",
-		"image": "1.jpeg"
+		"image": "pixel-to-product.jpeg"
 	},
 	{
 		"name": "Project Building",
 		"date": "February 07, 2026",
 		"time": "02:00 PM",
 		"description": "Interactive session focused on MVP development, and ideas.",
-		"image": "2.jpeg"
+		"image": "project-building.jpeg"
 	},
 	{
 		"name": "Craft & Learn",
 		"date": "August 19, 2025",
 		"time": "11:00 AM",
 		"description": "Hands-on maker meetup where students craft hardware, design tools, and learn peer-to-peer.",
-		"image": "3.jpeg"
+		"image": "craft-and-learn.jpeg"
 	},
 	{
 		"name": "TinkHerHack 4.0",
 		"date": "February 20, 2026",
 		"time": "09:00 AM",
 		"description": "All-women flagship hackathon encouraging diversity, mentorship, and tech innovation.",
-		"image": "4.jpeg"
+		"image": "tinkerhack-4-0.jpeg"
 	},
 	{
 		"name": "Useless Project 2.0",
 		"date": "August 8, 2025",
 		"time": "09:30 AM",
 		"description": "A fun, creative hackathon encouraging participants to build absurd and hilarious tech projects.",
-		"image": "5.jpeg"
+		"image": "useless-project-2-0.jpeg"
 	},
 	{
 		"name": "Rbi Reelathon 2026: Orientation",
 		"date": "July 22, 2026",
 		"time": "02:00 PM",
 		"description": "Orientation on how to participate on Rbi Reelathon conducted by Rbi Trivandrum and awareness on cyber money frauds.",
-		"image": "6.png"
+		"image": "rbi-reelathon-2026.png"
 	},
 	{
 		"name": "kulfi",
 		"date": "August 06, 2026",
 		"time": "03:50 PM",
 		"description": "TinkerHub Ceal Orientation",
-		"image": "7.jpeg"
+		"image": "kulfi.jpeg"
 	},
 	{
 		"name": "Useless Project 3.0",
@@ -59,12 +59,36 @@
 		"date": "August 19, 2026",
 		"time": "08:00 PM",
 		"description": "Do you want to make a pookalam but dont have flowers with you,  make one with code",
-		"image": "8.png"
+		"image": "code-a-pookalam.png"
 	},
 	{
 		"name": "O-Penn Mic",
 		"date": "September 8, 2026",
 		"time": "04:00 PM",
-		"description": "O-Penn Mic is a peer-led gathering of women students on campus where stories, projects, and ideas are shared openly. It’s a safe, supportive space to learn from each other, celebrate small wins, and grow together through curiosity and community."
+		"description": "O-Penn Mic is a peer-led gathering of women students on campus where stories, projects, and ideas are shared openly. It's a safe, supportive space to learn from each other, celebrate small wins, and grow together through curiosity and community."
+	},
+	{
+		"name": "തൊട്ടാവാടി",
+		"date": "October 9, 2026",
+		"time": "12:30 PM",
+		"description": "Finding what’s growing on the campus.",
+		"image": [
+			"thottavadi_1.png",
+			"thottavadi_2.png"
+		]
+	},
+	{
+		"name": "Dirt to Data",
+		"date": "October 15, 2026",
+		"time": "12:30 PM",
+		"description": "Dirt to Data, a hands-on hardware workshop where you’ll build a soil moisture analyser using a soil moisture sensor. Learn how to measure soil moisture levels, connect hardware components, and understand how sensor data helps monitor soil conditions.",
+		"image": "dirt-to-data.png"
+	},
+	{
+		"name": "TinkerTerra",
+		"date": "October 16, 2026",
+		"time": "01:00 PM",
+		"description": "TinkerTerra, a hardware bootcamp where you’ll build a light brightness control system using a photoresistive (LDR) sensor. Explore how light intensity is detected and use hardware components to control brightness based on surrounding light conditions.",
+		"image": "tinkerterra.png"
 	}
 ]

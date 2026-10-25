@@ -6,12 +6,12 @@
 	},
 	{
 		"type": "image",
-		"src": "static/images/1.jpeg",
+		"src": "static/images/pixel-to-product.jpeg",
 		"title": "Pixel to Product Workshop"
 	},
 	{
 		"type": "image",
-		"src": "static/images/2.jpeg",
+		"src": "static/images/project-building.jpeg",
 		"title": "Project Building Session"
 	},
 	{
@@ -21,12 +21,12 @@
 	},
 	{
 		"type": "image",
-		"src": "static/images/3.jpeg",
+		"src": "static/images/craft-and-learn.jpeg",
 		"title": "Craft & Learn Hardware Meetup"
 	},
 	{
 		"type": "image",
-		"src": "static/images/4.jpeg",
+		"src": "static/images/tinkerhack-4-0.jpeg",
 		"title": "TinkHerHack 4.0 Flagship Hackathon"
 	},
 	{
@@ -36,22 +36,22 @@
 	},
 	{
 		"type": "image",
-		"src": "static/images/5.jpeg",
+		"src": "static/images/useless-project-2-0.jpeg",
 		"title": "Useless Project 2.0"
 	},
 	{
 		"type": "image",
-		"src": "static/images/6.png",
+		"src": "static/images/rbi-reelathon-2026.png",
 		"title": "Rbi Reelathon 2026: Orientation"
 	},
 	{
 		"type": "image",
-		"src": "static/images/7.jpeg",
+		"src": "static/images/kulfi.jpeg",
 		"title": "Kulfi Orientation"
 	},
 	{
 		"type": "image",
-		"src": "static/images/8.png",
+		"src": "static/images/code-a-pookalam.png",
 		"title": "Code A Pookalam"
 	},
 	{
@@ -63,5 +63,25 @@
 		"type": "image",
 		"src": "static/images/team.jpeg",
 		"title": "TinkerHub CEAL Team 2025"
+	},
+	{
+		"type": "image",
+		"src": "static/images/thottavadi_1.png",
+		"title": "Thottavadi"
+	},
+	{
+		"type": "image",
+		"src": "static/images/thottavadi_2.png",
+		"title": "Thottavadi"
+	},
+	{
+		"type": "image",
+		"src": "static/images/dirt-to-data.png",
+		"title": "Dirt to Data"
+	},
+	{
+		"type": "image",
+		"src": "static/images/tinkerterra",
+		"title": "TinkerTerra"
 	}
 ]
